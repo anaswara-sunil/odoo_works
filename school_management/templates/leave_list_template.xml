@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="leave_list_template" name="Leave List">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Leave Details</h1>
+                <a href="/leave/create_leave" class="btn btn-primary">Create Leave</a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Current Class</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Total Days</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="leaves" t-as="leaves">
+                            <tr>
+                                <td><t t-esc="leaves.student_id.full_name"/></td>
+                                <td><t t-esc="leaves.student_id.current_class_id.name"/></td>
+                                <td><t t-esc="leaves.start_date"/></td>
+                                <td><t t-esc="leaves.end_date"/></td>
+                                <td><t t-esc="leaves.total_days"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+</odoo>
+
+

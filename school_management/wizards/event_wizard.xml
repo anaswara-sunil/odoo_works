@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="event_wizard_form" model="ir.ui.view">
+       <field name="name">event.wizard.form</field>
+       <field name="model">event.wizard</field>
+       <field name="arch" type="xml">
+           <form string="Event Report Based on">
+               <group>
+                   <group>
+                       <field name="club_id"/>
+                       <field name="month_week_day"/>
+                       <field name="start_date" invisible="month_week_day in ('month','week','day')"
+                              required="month_week_day =='custom'"/>
+                       <field name="end_date" invisible="month_week_day in ('month','week','day')"
+                              required="month_week_day =='custom'"/>
+                   </group>
+               </group>
+               <footer>
+                   <button name="action_event_report" string="PDF Report" type="object" class="btn-primary"/>
+                   <button name="action_event_xlsx_report" string="Excel Report" type="object" class="btn-primary"/>
+               </footer>
+           </form>
+       </field>
+   </record>
+
+    <record id="action_event_wizard" model="ir.actions.act_window">
+        <field name="name">Event Reporting</field>
+        <field name="res_model">event.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+<!--    <menuitem id="event_report_menu" name="Event details" parent="report_level_menu" action="action_event_wizard"/>-->
+
+</odoo>

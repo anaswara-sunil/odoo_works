@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--Category-->
+    <record id="school_management_access" model="ir.module.category">
+        <field name="name">School Management</field>
+    </record>
+    <!--Student Group-->
+    <record id="school_management_student" model="res.groups">
+        <field name="name">Student</field>
+        <field name="category_id" ref="school_management.school_management_access"/>
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+    <!--Teacher Group-->
+    <record id="school_management_teacher" model="res.groups">
+        <field name="name">Teacher</field>
+        <field name="category_id" ref="school_management.school_management_access"/>
+        <field name="implied_ids" eval="[Command.link(ref('school_management_student'))]"/>
+    </record>
+    <!--Staff Group-->
+    <record id="school_management_staff" model="res.groups">
+        <field name="name">Office Staff</field>
+        <field name="category_id" ref="school_management.school_management_access"/>
+        <field name="implied_ids" eval="[Command.link(ref('school_management_teacher'))]"/>
+    </record>
+</odoo>

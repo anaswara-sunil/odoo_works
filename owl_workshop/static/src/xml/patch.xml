@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="owl_workshop.input_box" t-inherit-mode="extension" owl="1">
+<!--        <xpath expr="//div[hasclass('InputDiv')]" position="inside">-->
+<!--            <button t-on-click="demofu">btn</button>-->
+
+<!--        </xpath>-->
+
+    </t>
+</templates>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="class_tree_view" model="ir.ui.view">
+        <field name="name">class.tree.view</field>
+        <field name="model">manage.class</field>
+        <field name="arch" type="xml">
+            <tree string="Department Reg">
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="head_of_department_id"/>
+<!--                <field name="school_id" groups="base.group_multi_company" string="School" invisible="1"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <record id="class_form_view" model="ir.ui.view">
+        <field name="name">class.form.view</field>
+        <field name="model">manage.class</field>
+        <field name="arch" type="xml">
+            <form string="Form view">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="department_id"/>
+                            <field name="head_of_department_id"/>
+                            <field name="student_count"/>
+<!--                            <field name="school_id" groups="base.group_multi_company" string="School"/>-->
+<!--                            <field name="student_ids" widget="many2many_tags" domain="[('current_class_id', '=', name)]"/>-->
+                        </group>
+                    </group>
+                     <notebook>
+                        <page string="Students">
+                            <field name="class_student_ids" domain="[('current_class_id', '=', name)]" options="{'no_create' : True}" readonly="1">
+                                <tree editable="bottom">
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                   <field name="message_follower_ids" groups="base.group_user"/>
+                   <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="class_action" model="ir.actions.act_window">
+        <field name="name">Manage Class</field>
+        <field name="res_model">manage.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--    <menuitem id="class_level_menu" name="Manage class" parent="cong_level_menu" action="class_action" />-->
+
+</odoo>

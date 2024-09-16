@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <data>
+       <record id="email_template_name" model="mail.template">
+           <field name="name">EVENT REMINDER</field>
+           <field name="model_id" ref="school_management.model_manage_event"/>
+           <field name="subject">Event Reminder</field>
+           <field name="email_from">{{ (user.email_formatted) }}</field>
+<!--           <field name="partner_to">{{ object.partner_id.id }}</field>-->
+           <field name="description">Add Description</field>
+           <field name="body_html" type="html">
+               <div>
+                   <p>
+                       Hello,
+                       <br/>
+                       <br/>
+                       Upcoming Event Reminder
+                       <br/>
+                       <br/>
+                       <br/>Mitchell Admin
+                       <br/>
+                       <br/>
+                   </p>
+               </div>
+           </field>
+       </record>
+   </data>
+</odoo>

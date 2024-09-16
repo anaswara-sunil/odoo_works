@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="material_request_tree_view" model="ir.ui.view">
+        <field name="name">material.request.tree.view</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <tree string="Material Request">
+                <field name="name"/>
+                <field name="request_owner_id"/>
+                <field name="request_date"/>
+                <field name="state" widget="badge" decoration-danger="state=='rejected'"
+                       decoration-success="state=='second_approval'" decoration-warning="state=='first_approval'"
+                       decoration-info="state=='submitted'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="material_request_form_view" model="ir.ui.view">
+        <field name="name">material.request.form.view</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <form string="Form view">
+                <header>
+                    <button name="action_button_request" type="object" string="Submit Request" class="btn btn-primary"
+                            help="Move Request to Submitted state"
+                            invisible="state in ('submitted','first_approval','second_approval','rejected')"/>
+
+                    <button name="action_button_first_approval" type="object" string="First Approval"
+                            class="btn btn-primary"
+                            help="Move Request to First Approval state"
+                            invisible="state in ('draft','first_approval','second_approval','rejected')"
+                            groups="material_request.material_request_manager"/>
+
+                    <button name="action_button_second_approval" type="object" string="Second Approval"
+                            class="btn btn-primary"
+                            help="Move Request to Second Approval state"
+                            invisible="state in ('draft','submitted','second_approval','rejected')"
+                            groups="material_request.material_request_head"/>
+
+                    <button name="action_button_reject" type="object" string="Reject"
+                            class="btn btn-primary"
+                            help="Move Request to Rejected state"
+                            invisible="state in ('draft','submitted','second_approval','rejected')"
+                            groups="material_request.material_request_head"/>
+
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submitted,first_approval,second_approval,rejected"/>
+                </header>
+                <sheet>
+                    <div name="button_box" position="inside">
+                        <button class="oe_stat_button" type="object" icon="fa-truck" name="action_get_purchase_record"
+                                invisible="purchase_count == 0">
+                            <field string="Purchase" name="purchase_count" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button" type="object" icon="fa-taxi" name="action_get_transfer_record"
+                                invisible="transfer_count == 0">
+                            <field string="Transfer" name="transfer_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <h1>
+                        <field name="name" placeholder="E.g: New Material requirement "/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="request_owner_id"/>
+                            <field name="request_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Products">
+                            <field name="request_line_ids" readonly="state == 'rejected'">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="type"/>
+                                    <field name="quantity"/>
+                                    <field name="uom"/>
+                                    <field name="location_src_id" readonly="type == 'purchase'"/>
+                                    <field name="location_dest_id" readonly="type == 'purchase'"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="material_request_action" model="ir.actions.act_window">
+        <field name="name">Material Request</field>
+        <field name="res_model">material.request</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+
+    <menuitem id="material_request_menu_root" name="Material Request"/>
+
+    <menuitem id="material_request_level_menu" name="Material Request " action="material_request_action"
+              parent="material_request_menu_root" sequence="1"/>
+
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="students_list_template" name="Students List">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Student's Details</h1>
+                <a href="/registration/register" class="btn btn-primary">Register Student</a>
+                <table class="table table-hover student_table">
+                    <thead>
+                        <tr>
+                            <th style="display:none;">Student id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone No.</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="students" t-as="student">
+                            <tr id="student_row_{{ student.id }} student_row">
+                                <td style="display:none;" id="id_row" class="clickable_row">
+                                    <t t-esc="student.id"/>
+                                </td>
+                                <td class="clickable_row">
+                                    <t t-esc="student.full_name"/>
+                                </td>
+                                <td class="clickable_row">
+                                    <t t-esc="student.email"/>
+                                </td>
+                                <td class="clickable_row">
+                                    <t t-esc="student.phone"/>
+                                </td>
+                                <td class="clickable_row">
+                                    <t t-esc="student.state"/>
+                                </td>
+                                <td>
+                                   <t t-if="student.state != 'registered'">
+                                           <button class="btn btn-primary confirm_btn" t-att-id="student.id" >Confirm</button>
+                                   </t>
+                                    <a t-att-href="'/registration/delete/%s' % student.id" class="btn btn-danger">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+<!-- Modal  -->
+            <div id="confirmModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Confirm Student</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form id="student_confirm_form" t-attf-action="/registration/confirm_student" method="post">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <input type="hidden" name="student_id" id="student_id"/>
+                                <div class="form-group">
+                                    <label for="student_name">Name</label>
+                                    <input type="text" class="form-control" id="student_name" name="name"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="student_email">Email</label>
+                                    <input type="text" class="form-control" id="student_email" name="email"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="student_class">Class</label>
+                                    <input type="text" class="form-control" id="student_class" name="class"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="student_phone">Phone</label>
+                                    <input type="number" class="form-control" id="student_phone" name="phone"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" id="confirm_student" class="btn btn-success">Confirm</button>
+                                    <button type="button" class="btn btn-secondary close_btn close" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
+
+

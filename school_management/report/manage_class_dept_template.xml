@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_class_department">
+        <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-if="data['based_on'] == 'class'">
+                        <t t-foreach="class_dict" t-as="classes">
+                            <center><h3><b>CLASS REPORT- <t t-esc="classes"/></b></h3></center>
+<!--                            <h2 >Class Report- <t t-esc="classes"/></h2> <br/><br/>-->
+                            <p>Printed Date : <t t-esc="date" /></p>
+                            <p>Class:  <t  t-out="classes"/></p>
+                            <p>Department:  <t  t-out="class_dict[classes]"/></p>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Student Reg.no</th>
+                                        <th>Student</th>
+                                        <th>Student Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     <t t-foreach="report" t-as="rep">
+                                        <t t-if="rep.get('class') == classes">
+                                            <tr>
+                                                <td>
+                                                    <t t-esc="rep.get('student_reg_no')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rep.get('student')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rep.get('email')"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                     </t>
+                                </tbody>
+                            </table>
+                        </t>
+                    </t>
+
+                    <t t-if="data['based_on'] == 'department'">
+                        <t t-foreach="dept_dict" t-as="dept">
+                            <center><h3><b>DEPARTMENT REPORT- <t t-esc="dept"/></b></h3></center>
+<!--                            <h2 style="margin-left:210px">Department Report- <t t-esc="dept"/></h2> <br/><br/>-->
+                            <p>Printed Date : <t t-esc="date" /></p>
+                            <p>Head of Department:  <t  t-out="dept_dict[dept]"/></p>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Class</th>
+                                        <th>Total Students</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     <t t-foreach="report" t-as="rep">
+                                        <t t-if="rep.get('department') == dept">
+                                            <tr>
+                                                <td>
+                                                    <t t-esc="rep.get('class')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rep.get('student_count')"/>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                     </t>
+                                </tbody>
+                            </table>
+                        </t>
+                    </t>
+                </t>
+        </t>
+    </template>
+</odoo>

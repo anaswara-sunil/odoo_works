@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!-- to create record in department-->
+    <record id="manage_department_demo1" model="manage.department">
+        <field name="name">ECE</field>
+    </record>
+
+    <record id="manage_department_demo2" model="manage.department">
+        <field name="name">CS</field>
+    </record>
+
+    <record id="manage_department_demo3" model="manage.department">
+        <field name="name">ME</field>
+    </record>
+
+<!--    to create record in subject-->
+    <record id="manage_subject_demo1" model="manage.subject">
+        <field name="name">Electronics</field>
+        <field name="dept_id" ref="manage_department_demo1"/>
+    </record>
+
+    <record id="manage_subject_demo2" model="manage.subject">
+        <field name="name">Computer</field>
+        <field name="dept_id" ref="manage_department_demo2"/>
+    </record>
+
+     <record id="manage_subject_demo3" model="manage.subject">
+        <field name="name">Mechanical</field>
+        <field name="dept_id" ref="manage_department_demo3"/>
+    </record>
+
+<!--    to create record in class-->
+    <record id="manage_class_demo1" model="manage.class">
+        <field name="name">ECE 1</field>
+        <field name="department_id" ref="manage_department_demo1"/>
+    </record>
+
+     <record id="manage_class_demo2" model="manage.class">
+        <field name="name">CS 1</field>
+        <field name="department_id" ref="manage_department_demo2"/>
+    </record>
+
+     <record id="manage_class_demo3" model="manage.class">
+        <field name="name">ME 1</field>
+        <field name="department_id" ref="manage_department_demo3"/>
+    </record>
+</odoo>

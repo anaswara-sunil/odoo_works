@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="office_staff_tree_view" model="ir.ui.view">
+        <field name="name">office.staff.tree.view</field>
+        <field name="model">manage.employee</field>
+        <field name="arch" type="xml">
+            <tree string="Office Staffs">
+                <field name="partner_id" domain="[('contact_type', '=', 'office_staff')]" options="{'no_create' : True}"/>
+                <field name="email" />
+                <field name="school_id" groups="base.group_multi_company" string="School" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="office_staff_action" model="ir.actions.act_window">
+        <field name="name">Office Staff</field>
+        <field name="res_model">manage.employee</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('contact_type', '=', 'office_staff')]</field>
+        <field name="view_id" ref="office_staff_tree_view"/>
+
+    </record>
+
+<!--    <menuitem id="office_staff_level_menu" name="Office Staff" parent="employee_level_menu"-->
+<!--              action="office_staff_action"/>-->
+
+</odoo>
+
+
+
+

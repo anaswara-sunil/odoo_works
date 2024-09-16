@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="leave_wizard_form" model="ir.ui.view">
+       <field name="name">leave.wizard.form</field>
+       <field name="model">leave.wizard</field>
+       <field name="arch" type="xml">
+           <form string="Leave Report Based on">
+               <group>
+                   <group>
+                       <field name="month_week_day"/>
+                       <field name="class_student" widget="radio"/>
+                       <field name="class_id" invisible="class_student == 'student'" />
+                       <field name="student_id" invisible="class_student == 'class'" />
+                       <field name="start_date" invisible="month_week_day in ('month','week','day')"/>
+                       <field name="end_date" invisible="month_week_day in ('month','week','day')"/>
+                   </group>
+               </group>
+               <footer>
+                   <button name="action_leave_report" string="PDF Report" type="object" class="btn-primary"/>
+                   <button name="action_leave_xlsx_report" string="Excel Report" type="object" class="btn-primary"/>
+               </footer>
+           </form>
+       </field>
+   </record>
+
+    <record id="action_leave_wizard" model="ir.actions.act_window">
+        <field name="name">Leave Reporting</field>
+        <field name="res_model">leave.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+<!--    <menuitem id="report_level_menu" name="Reporting" parent="school_menu_root"-->
+<!--              sequence="7"/>-->
+<!--    <menuitem id="leave_report_menu" name="Leave information" parent="report_level_menu" action="action_leave_wizard"/>-->
+
+</odoo>

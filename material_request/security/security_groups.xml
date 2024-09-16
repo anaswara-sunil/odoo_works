@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--Category-->
+    <record id="material_request_access" model="ir.module.category">
+        <field name="name">Material Request</field>
+    </record>
+
+    <!--Requisition department manager Group-->
+    <record id="material_request_manager" model="res.groups">
+        <field name="name">Requisition department manager</field>
+        <field name="category_id" ref="material_request.material_request_access"/>
+<!--        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>-->
+    </record>
+
+    <!--Requisition department manager Group-->
+    <record id="material_request_head" model="res.groups">
+        <field name="name">requisition Head</field>
+        <field name="category_id" ref="material_request.material_request_access"/>
+    </record>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="club_tree_view" model="ir.ui.view">
+        <field name="name">club.tree.view</field>
+        <field name="model">manage.club</field>
+        <field name="arch" type="xml">
+            <tree string="Manage Clubs" >
+                <field name="name"/>
+                <field name="school_id" groups="base.group_multi_company" string="School"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="club_form_view" model="ir.ui.view">
+        <field name="name">club.form.view</field>
+        <field name="model">manage.club</field>
+        <field name="arch" type="xml">
+            <form string="Form view">
+                <sheet>
+                    <div name="button_box" position="inside">
+                        <button class="oe_stat_button" type="object" icon="fa-taxi" name="action_get_events_record">
+                            <field string="Events" name="event_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <field name="name" string="Club Name"/>
+                        <field name="color" widget="color_picker"/>
+                    </group>
+                    <notebook>
+                        <page string="Students">
+                            <field name="student_ids" domain="[('state', '='
+                            , 'registered')]" options="{'no_create' : True}">
+                                <tree editable="bottom">
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                 <div class="oe_chatter">
+                   <field name="message_follower_ids" groups="base.group_user"/>
+                   <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="club_action" model="ir.actions.act_window">
+        <field name="name">Manage Clubs</field>
+        <field name="res_model">manage.club</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--    <menuitem id="club_level_menu" name="Clubs" parent="school_menu_root" action="club_action" sequence="2"/>-->
+
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="student_details_template" name="Students Details">
+        <t t-call="website.layout">
+            <div class="container">
+                <center><h1>Student's Details</h1></center>
+                <table class="table">
+                        <tr>
+                            <th>Full Name</th>
+                            <td><t t-esc="student.full_name"/></td>
+                        </tr>
+                        <tr>
+                            <th>First Name</th>
+                            <td><t t-esc="student.first_name"/></td>
+                        </tr>
+                        <tr>
+                            <th>Last Name</th>
+                            <td><t t-esc="student.last_name"/></td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td><t t-esc="student.email"/></td>
+                        </tr>
+                        <tr>
+                            <th>Phone No.</th>
+                            <td><t t-esc="student.phone"/></td>
+                        </tr>
+                        <tr>
+                            <th>DOB</th>
+                            <td><t t-esc="student.dob"/></td>
+                        </tr>
+                        <tr>
+                            <th>Age</th>
+                            <td><t t-esc="student.student_age"/></td>
+                        </tr>
+                        <tr>
+                            <th>Communication Address</th>
+                            <td><t t-esc="student.communication_addr"/></td>
+                        </tr>
+                        <tr>
+                            <th>Permanent Address</th>
+                            <td><t t-esc="student.permanent_addr"/></td>
+                        </tr>
+                        <tr>
+                            <th>Aadhaar Number</th>
+                            <td><t t-esc="student.aadhaar_number"/></td>
+                        </tr>
+                        <tr>
+                            <th>Class</th>
+                            <td><t t-esc="student.current_class_id.name"/></td>
+                        </tr>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="exam_tree_view" model="ir.ui.view">
+        <field name="name">exam.tree.view</field>
+        <field name="model">manage.exam</field>
+        <field name="arch" type="xml">
+            <tree string="Office Staffs">
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="exam_form_view" model="ir.ui.view">
+        <field name="name">id="exam.tree.view"</field>
+        <field name="model">manage.exam</field>
+        <field name="arch" type="xml">
+            <form string="Form view">
+                <header>
+                    <button string="Assign to Students" type="object" name="action_assign_exam_to_students"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="class_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="color" widget="color_picker"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Papers">
+                            <tree>
+                                <field name="subject_ids" domain="[('dept_id', '=', class_id)]"
+                                       options="{'no_create' : True}">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="pass_mark"/>
+                                        <field name="max_mark"/>
+                                    </tree>
+                                </field>
+                            </tree>
+<!--                            <group  style="position : absolute; left : 1020px;bottom:1px; font-size: 1.3em; font-weight: bold; ">-->
+<!--                                <field name="total_mark" string="Total Mark"/>-->
+<!--                            </group>-->
+                            <group class="oe_subtotal_footer" style="font-weight: bold;font-size: 1.3em;">
+                                <field name="total_mark" string="Total Mark"/>
+                            </group>
+                        </page>
+                    </notebook>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="exam_action" model="ir.actions.act_window">
+        <field name="name">Manage Exams</field>
+        <field name="res_model">manage.exam</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+<!--    <menuitem id="exam_level_menu" name="Exams" parent="school_menu_root" action="exam_action" sequence="6"/>-->
+
+
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_exam">
+        <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <center><h3><b t-esc="data['report_name']"/></h3></center>
+<!--                    <h2 style="margin-left:300px" t-esc="data['report_name']"/>-->
+                    <p>Printed Date : <t t-esc="date" /></p>
+                     <t t-if="data['based_on'] == 'class'">
+                        <t t-foreach="report" t-as="rep">
+                            <h4>Class:  <t  t-out="rep.get('class')"/></h4>
+                            <p>Department:  <t  t-out="rep.get('department')"/></p>
+                            <p>HOD:  <t  t-out="rep.get('hod')"/></p>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Exam</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                <t t-esc="rep.get('exam')"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="rep.get('start_date')"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="rep.get('end_date')"/>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                        </t>
+                    </t>
+
+                     <t t-if="data['based_on'] == 'exam'">
+                        <t t-foreach="exam_dict" t-as="exam">
+                            <p>Exam:  <t  t-out="exam"/></p>
+                            <p>Class:  <t  t-out="exam_dict[exam]"/></p>
+                            <table class="table table-bordered">
+                                <thead >
+                                    <th>Subject</th>
+                                    <th>Pass Mark</th>
+                                    <th>Total Mark</th>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="report" t-as="rep">
+                                        <t t-if="rep.get('exam') == exam">
+                                            <tr>
+                                                <td>
+                                                    <t t-esc="rep.get('subject')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rep.get('pass_mark')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rep.get('total')"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </tbody>
+                            </table> <br/><br/>
+                        </t>
+                    </t>
+                </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="subject_tree_view"  model="ir.ui.view">
+        <field name="name">subject.tree.view</field>
+        <field name="model">manage.subject</field>
+        <field name="arch" type="xml">
+            <tree string="Subject Reg">
+                <field name="name"/>
+                <field name="dept_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="subject_form_view" model="ir.ui.view">
+        <field name="name">subject.form.view</field>
+        <field name="model">manage.subject</field>
+        <field name="arch" type="xml">
+            <form string="Form view">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="dept_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                   <field name="message_follower_ids" groups="base.group_user"/>
+                   <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="sub_action" model="ir.actions.act_window">
+        <field name="name">Manage Subject</field>
+        <field name="res_model">manage.subject</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--    <menuitem id="subject_level_menu" name="Manage subject" parent="cong_level_menu" action="sub_action" />-->
+
+</odoo>

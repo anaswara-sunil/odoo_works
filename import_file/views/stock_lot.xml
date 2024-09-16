@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="stock_lot_action" model="ir.actions.act_window">
+        <field name="name">Import Lots and Serial Number</field>
+        <field name="res_model">import.file.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="import_file_menu" name="Import" action="stock_lot_action"
+              parent="stock.menu_stock_inventory_control" sequence="0"/>
+</odoo>

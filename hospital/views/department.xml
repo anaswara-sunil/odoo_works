@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="hosp_department_action" model="ir.actions.act_window">
+        <field name="name">Departments</field>
+        <field name="res_model">hr.department</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="hosp_department_form_inherit">
+        <field name="name">hr.department.form.inherit</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_form"/>
+        <field name="arch" type="xml">
+            <field name="parent_id"  position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </field>
+            <field name="company_id"  position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </field>
+            <field name="color"  position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </field>
+            <xpath expr="//form/sheet/group/group/field[@name='company_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+        </field>
+
+
+    </record>
+
+    <menuitem id="hospital_second_level_menu" name="Management" parent="hospital_menu_root"/>
+    <menuitem id="second_level_first_menu" name="Departments" parent="hospital_second_level_menu"  action="hosp_department_action" />
+
+
+
+</odoo>
+
+

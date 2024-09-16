@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--School level menu-->
+    <menuitem id="school_menu_root" name="School Management"/>
+
+    <menuitem id="student_level_menu" name="Student" parent="school_menu_root" sequence="1"/>
+    <menuitem id="reg_level_menu" name=" Registration" parent="student_level_menu"
+              action="registration_action"/>
+
+    <menuitem id="club_level_menu" name="Clubs" parent="school_menu_root" action="club_action" sequence="2"/>
+
+    <menuitem id="event_level_menu" name="Events" parent="school_menu_root" action="event_action" sequence="3"/>
+
+    <menuitem id="employee_level_menu" name="Employees" parent="school_menu_root" sequence="4"/>
+<!--Employee level menu-->
+    <menuitem id="teacher_level_menu" name="Teachers" parent="employee_level_menu" action="teacher_action"/>
+    <menuitem id="office_staff_level_menu" name="Office Staff" parent="employee_level_menu"
+              action="office_staff_action"/>
+
+
+    <menuitem id="leave_level_menu" name="Leaves" parent="school_menu_root" sequence="5" action="leave_action"/>
+
+    <menuitem id="exam_level_menu" name="Exams" parent="school_menu_root" action="exam_action" sequence="6"/>
+
+<!--Reporting-->
+    <menuitem id="report_level_menu" name="Reporting" parent="school_menu_root"
+              sequence="7"/>
+    <menuitem id="leave_report_menu" name="Leave information" parent="report_level_menu" action="action_leave_wizard"/>
+    <menuitem id="event_report_menu" name="Event details" parent="report_level_menu" action="action_event_wizard"/>
+    <menuitem id="club_report_menu" name="Club data" parent="report_level_menu" action="action_club_wizard"/>
+    <menuitem id="class_department_report_menu" name="Student information" parent="report_level_menu"
+        action="action_class_department_wizard"/>
+    <menuitem id="exam_report_menu" name="Exam details" parent="report_level_menu" action="action_exam_wizard"/>
+
+    <menuitem id="cong_level_menu" name="Configuration" parent="school_menu_root"/>
+<!--Configuration level menu-->
+    <menuitem id="dept_level_menu" name="Manage department" parent="cong_level_menu" action="department_action"/>
+    <menuitem id="class_level_menu" name="Manage class" parent="cong_level_menu" action="class_action" />
+    <menuitem id="academic_level_menu" name="Manage academic" parent="cong_level_menu" action="academic_action" />
+    <menuitem id="subject_level_menu" name="Manage subject" parent="cong_level_menu" action="sub_action" />
+
+
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!-- Scheduled Action for Archiving Events -->
+    <record id="ir_archive_event" model="ir.cron">
+        <field name="name">Archiving Events</field>
+        <field name="model_id" ref="model_manage_event"/>
+        <field name="state">code</field>
+        <field name="code">model.archive_event()</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+    </record>
+
+<!-- Scheduled action for Email sending   -->
+    <data noupdate="1">
+        <record id="ir_cron_event_reminder" model="ir.cron">
+            <field name="name">Send Event Reminders</field>
+            <field name="model_id" ref="model_manage_event"/>
+            <field name="state">code</field>
+            <field name="code">model.send_email()</field>
+            <field name="interval_type">days</field>
+            <field name="interval_number">1</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+
+<!-- Automated Action for Attendance marking -->
+    <record id="ir_attendance_check" model="ir.cron">
+        <field name="name">Update Student Attendance</field>
+        <field name="model_id" ref="model_student_reg"/>
+        <field name="state">code</field>
+        <field name="code">model.attendance_check()</field>
+         <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+    </record>
+</odoo>

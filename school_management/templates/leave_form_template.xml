@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="leave_form_template">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty" >
+                    <div class="col-lg-8 mt-4 mt-lg-0">
+                        <div class="container" style="margin-left:300px">
+                            <form action="/leave/submit" method="post" class="leave_form_template">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="container">
+                                    <h1 style="text-align:center">Leave Form</h1>
+                                </div>
+                                <div class="s_website_form_rows row s_col_no_bgcolor">
+                                    <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                         data-type="char" data-name="Field">
+                                        <!--Student name-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Student Name</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <select id="students_name" name="students_name" required="True" class="form-control" style=" height: 35px;">
+                                                    <t t-foreach="students" t-as="stud">
+                                                        <option t-att-value="stud.id" t-esc="stud.full_name"/></t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Class-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Current Class</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control s_website_form_input"
+                                                       readonly="1" name="current_class" id="current_class"/>
+                                            </div>
+                                        </div>
+                                        <!--Half Day-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Half Day
+                                                </span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="checkbox" class="form-check-input is_same" name="half_day"
+                                                       id="half_day"/>
+                                            </div>
+                                        </div>
+                                        <!--Start Date-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Start Date</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="Date" required="1" id="start_date" name='start_date'
+                                                       class="form-control s_website_form_input"/>
+                                            </div>
+                                        </div>
+                                        <!--End Date-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content" id="end_date_span">End Date</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="Date" id="end_date" name='end_date'
+                                                       class="form-control s_website_form_input"/>
+                                            </div>
+                                        </div>
+                                         <div id="date_error" class="text-danger" style="margin-left:500px">
+                                        </div>
+                                        <!--Total Days-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Total Days</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input readonly="1" id="total_days" name='total_days'
+                                                       class="form-control s_website_form_input"/>
+                                            </div>
+                                        </div>
+                                        <!--Reason-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Reason</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <textarea class="form-control s_website_form_input" required="True"
+                                                          name='reason' id="reason" />                                               </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Button-->
+                                <div class="mb-0 py-2 col-12 ">
+                                   <div id="submit_error" class="text-danger" style="margin-left:500px">
+                                    </div>
+<!--                                    <center>-->
+<!--                                        <button type="button" class="btn btn-primary" id="submit_btn">Submit</button>-->
+<!--                                    </center>-->
+                                        <center><input type="submit" class="btn btn-primary"/></center>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </t>
+    </template>
+</odoo>

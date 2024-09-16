@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--user creation upon student registration-->
+     <record id="action_user_creation" model="base.automation">
+        <field name="name">Student Automation: user creation</field>
+        <field name="model_id" ref="model_student_reg"/>
+        <field name="trigger" >on_state_set</field>
+         <field name="trigger_field_ids"
+                eval="[Command.link(ref('school_management.selection__student_reg__state__registered'))]"/>
+     </record>
+<!--user creation upon teacher registration-->
+    <record id="action_user_creation_by_employee" model="base.automation">
+        <field name="name">Employee Automation: user creation </field>
+        <field name="model_id" ref="model_manage_employee"/>
+        <field name="trigger" >on_create</field>
+     </record>
+
+</odoo>

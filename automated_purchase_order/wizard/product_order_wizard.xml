@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <!-- Odoo View Definition for wizard-->
+   <record id="product_order_wizard_view_form" model="ir.ui.view">
+       <field name="name">purchase.order.wizard.view.form</field>
+       <field name="model">purchase.order.wizard</field>
+       <field name="arch" type="xml">
+           <form string="Purchase order">
+               <group>
+                   <field name="product_id"/>
+                   <field name="vendor_id"/>
+                   <field name="quantity"/>
+                   <field name="price"/>
+               </group>
+               <footer>
+                   <button name="action_create_po" string="Confirm" type="object"  class="btn btn-primary"
+                            help="Create a new Purchase Order"/>
+                   <button string="Cancel" special="cancel"/>
+               </footer>
+           </form>
+       </field>
+   </record>
+</odoo>

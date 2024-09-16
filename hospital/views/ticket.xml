@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="op_ticket_action" model="ir.actions.act_window">
+        <field name="name">Op Ticket</field>
+        <field name="res_model">op.ticket</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="op_ticket_tree_view">
+            <field name="name">op.ticket.tree.view</field>
+            <field name="model">op.ticket</field>
+            <field name="arch" type="xml">
+                <tree string="Op Ticket Reg">
+                    <field name="name"/>
+                    <field name="patient_id"/>
+                    <field name="doctor_id"/>
+                    <field name="booking_date"/>
+                    <field name="department_id"/>
+
+                </tree>
+            </field>
+    </record>
+
+
+     <record model="ir.ui.view" id="op_ticket_form_view">
+        <field name="name">op.ticket.form</field>
+        <field name="model">op.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Form view">
+              <header>
+                  <button name="button_done" string="Confirm" type="object" help="Move Appointment to In Progress state" invisible="state in ('done')"/>
+                  <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+              </header>
+              <sheet>
+                    <group>
+                         <h1><field name="name"/></h1>
+                    </group>
+                    <group>
+
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="patient_age"/>
+                            <field name="phone"/>
+                        </group>
+
+                        <group>
+                            <field name="booking_date"/>
+                            <field name="doctor_id"/>
+                            <field name="department_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="first_level_second_menu" name="Op-Ticket" parent="hospital_first_level_menu" action="op_ticket_action" />
+
+
+</odoo>

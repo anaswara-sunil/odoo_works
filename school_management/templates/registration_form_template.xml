@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="registration_form_template">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div class="row">
+                    <div class="col-lg-8 mt-4 mt-lg-0">
+                        <div class="container registration_form_template">
+                            <form action="/registration/submit" method="post" id="form_id">
+<!--                            <form  method="post" id="form_id">-->
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="container">
+                                    <h1 style="text-align:center">Register Student</h1>
+                                </div>
+                                <div class="s_website_form_rows row s_col_no_bgcolor">
+                                    <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                         data-type="char" data-name="Field">
+                                        <!--First name-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">First Name</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control s_website_form_input"
+                                                      id="first_name" name="first_name" required="1"/>
+                                            </div>
+                                        </div>
+                                        <!--Last name-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Last Name</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control s_website_form_input"
+                                                       name="last_name" id="last_name" />
+                                            </div>
+                                        </div>
+                                        <!--Communication addr.-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Communication Address
+                                                </span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <textarea class="form-control s_website_form_input" required="1"
+                                                          name='communication_addr' id="communication_addr"/>
+                                            </div>
+                                        </div>
+                                        <!--is same-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Is Same?
+                                                </span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="checkbox" class="form-check-input is_same" name="is_same"
+                                                       id="is_same"/>
+                                            </div>
+                                        </div>
+                                        <!--Permanent addr-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2 permanent_addr_div">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content" id="permanent_addr_span">
+                                                    Permanent Address
+                                                </span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <textarea class="form-control s_website_form_input"
+                                                          name='permanent_addr' id="permanent_addr"/>
+                                            </div>
+                                        </div>
+                                        <!--Email-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Email
+                                                </span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control s_website_form_input"
+                                                       required="1" name='email' id='email'/>
+                                            </div>
+                                        </div>
+                                        <!--DOB-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">DOB
+                                                </span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="Date" required="1" id="dob" name='dob'
+                                                       class="form-control s_website_form_input"/>
+                                            </div>
+                                        </div>
+                                        <!--Age-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Age
+                                                </span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input readonly="1" id="age" name='age'
+                                                       class="form-control s_website_form_input"/>
+                                            </div>
+                                        </div>
+                                        <!--TC-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">TC
+                                                </span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="file" name='tc' id="tc"
+                                                       class="form-control s_website_form_input"/>
+                                            </div>
+                                            <div id="tc_error" class="text-danger" style="margin-left:200px">
+                                            </div>
+                                        </div>
+                                        <!--Aadhaar-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Aadhaar</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input type="integer" required="1" name='aadhaar_number' id='aadhaar_number'
+                                                       class="form-control s_website_form_input"/>
+                                            </div>
+                                        </div>
+                                        <!--Current Class-->
+                                        <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Class</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <select id="current_class" name="current_class" required="True" class="form-control" style=" height: 35px;">
+                                                    <t t-foreach="current_class" t-as="class">
+                                                        <option t-att-value="class.id" t-esc="class.name"/></t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-0 py-5 col-12 ">
+                                    <div id="submit_error" class="text-danger" style="margin-left:500px">
+                                    </div>
+                                    <center>
+                                        <button type="button" class="btn btn-primary" id="submit_btn">Submit</button>
+                                    </center>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-5 mt-lg-0">
+                        <ul class="list-unstyled mb-0 ps-2 mt-4">
+                            <li>My Company</li>
+                            <li>
+                                <i class="fa fa-map-marker fa-fw me-2"></i>
+                                <span class="o_force_ltr">3575 Fake Buena Vista Avenue</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-phone fa-fw me-2"></i>
+                                <span class="o_force_ltr">+1 555-555-5556</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-1x fa-fw fa-envelope me-2"></i>
+                                <span>info@yourcompany.example.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

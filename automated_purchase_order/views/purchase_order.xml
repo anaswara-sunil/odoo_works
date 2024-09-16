@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="purchase_order_action" model="ir.actions.act_window">
+        <field name="name">Purchase Orders</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <menuitem id="purchase_order_menu" name="Orders " action="purchase_order_action" parent="purchase_order_menu_root" sequence="1"/>
+
+</odoo>

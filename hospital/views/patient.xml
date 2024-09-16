@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="res_patient_action" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="hosp_patient_form_inherit">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="blood_group"/>
+                <field name="dob"/>
+                <field name="age"/>
+            </field>
+
+             <field name="website"  position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </field>
+            <field name="function"  position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </field>
+            <field name="title"  position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </field>
+            <field name="category_id"  position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </field>
+
+            <field name="vat"  position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </field>
+           <notebook position="attributes">
+                 <attribute name="invisible">1</attribute>>
+           </notebook>
+        </field>
+
+    </record>
+
+
+
+    <menuitem id="hospital_menu_root" name="Hospital management"/>
+
+    <menuitem id="hospital_first_level_menu" name="Reception" parent="hospital_menu_root"/>
+    <menuitem id="first_level_first_menu" name="Patient" parent="hospital_first_level_menu" action="res_patient_action" />
+
+</odoo>

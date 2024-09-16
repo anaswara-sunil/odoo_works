@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--user creation upon student registration-->
+    <record id="student_registration_create_user_action" model="ir.actions.server">
+        <field name="name">Create User for New Student</field>
+        <field name="model_id" ref="model_student_reg"/>
+        <field name="state">code</field>
+        <field name="base_automation_id" ref="school_management.action_user_creation"/>
+        <field name="code">records.create_user()</field>
+    </record>
+
+<!--user creation upon teacher registration-->
+    <record id="employee_registration_create_user_action" model="ir.actions.server">
+        <field name="name">Create User for New Employee</field>
+        <field name="model_id" ref="model_manage_employee"/>
+        <field name="state">code</field>
+        <field name="base_automation_id" ref="school_management.action_user_creation_by_employee"/>
+        <field name="code">records.create_user()</field>
+    </record>
+</odoo>
+
+
+

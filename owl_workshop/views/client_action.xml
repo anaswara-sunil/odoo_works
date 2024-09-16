@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    Action to show the dashboard -->
+    <record id="advanced_dashboard_action" model="ir.actions.client">
+        <field name="name">Advanced Dashboard</field>
+        <field name="tag">advanced_dashboard</field>
+    </record>
+
+<!--    Menu item to show the dashboard  menu in the module-->
+    <menuitem name="Dashboards" id="advanced_dashboard_menu" sequence="1" action="advanced_dashboard_action" />
+</odoo>

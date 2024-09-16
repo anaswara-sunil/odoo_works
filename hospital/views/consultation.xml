@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="consultation_form_action" model="ir.actions.act_window">
+        <field name="name">Consultation</field>
+        <field name="res_model">consultation.form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="consultation_form_tree_view">
+            <field name="name">consultation.form.tree.view</field>
+            <field name="model">consultation.form</field>
+            <field name="arch" type="xml">
+                <tree string="Consultation Reg">
+                    <field name="name"/>
+                    <field name="consultation_no"/>
+                    <field name="patient_id"/>
+                    <field name="doctor_id"/>
+                    <field name="department_id"/>
+                    <field name="date"/>
+                    <field name="prescription"/>
+
+                </tree>
+            </field>
+    </record>
+
+    <record model="ir.ui.view" id="consultation_form_form_view">
+        <field name="name">consultation</field>
+        <field name="model">consultation.form</field>
+        <field name="arch" type="xml">
+            <form string="Form view">
+                <sheet>
+                     <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="consultation_no"/>
+                        </group>
+
+                        <group>
+                            <field name="doctor_id"/>
+                            <field name="department_id"/>
+                        </group>
+
+                        <group>
+                            <field name="date"/>
+                        </group>
+                       <group>
+                           <field name="patient_id"/>
+                        </group>
+                     </group>
+                    <notebook>
+                        <page string="Prescription">
+                            <field name="prescription"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="hospital_third_level_menu" name="Consultation" parent="hospital_menu_root"
+              action="consultation_form_action"/>
+
+</odoo>

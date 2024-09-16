@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="teacher_tree_view" model="ir.ui.view">
+        <field name="name">teacher.tree.view</field>
+        <field name="model">manage.employee</field>
+        <field name="arch" type="xml">
+            <tree string="Teachers" editable="bottom">
+                <field name="partner_id" string="Teachers" domain="[('contact_type', '=', 'teacher')]"  options="{'no_create' : True}"/>
+                <field name="email" options="{'no_create' : False}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="teacher_action" model="ir.actions.act_window">
+        <field name="name">Teachers</field>
+        <field name="res_model">manage.employee</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('contact_type', '=', 'teacher')]</field>
+        <field name="view_id" ref="teacher_tree_view"/>
+
+    </record>
+
+<!--    <menuitem id="employee_level_menu" name="Employees" parent="school_menu_root" sequence="4"/>-->
+<!--    <menuitem id="teacher_level_menu" name="Teachers" parent="employee_level_menu" action="teacher_action"/>-->
+
+</odoo>
+
+
+
+
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="event_registration_template">
+        <t t-call="website.layout">
+            <div>
+                <center><div class="col-lg-8 mt-5 mt-lg-0">
+                    <div class="container registration_form_template mt-5">
+                      <form action="/event/submit" class="event_form_template" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="container">
+                                <h1 style="text-align:center">Register Event</h1>
+                            </div>
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <!--Event name-->
+                                    <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Event Name</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input type="text" class="form-control s_website_form_input"
+                                                  id="event_name" name="event_name" required="1"/>
+                                        </div>
+                                    </div>
+                                    <!--start date-->
+                                    <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Start Date
+                                            </span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input type="Date" required="1" id="start_date" name='start_date'
+                                                   class="form-control s_website_form_input"/>
+                                        </div>
+                                    </div>
+                                    <!--end date-->
+                                    <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">End Date
+                                            </span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input type="Date" required="1" id="end_date" name='end_date'
+                                                   class="form-control s_website_form_input"/>
+                                        </div>
+                                    </div>
+                                    <!--Clubs-->
+                                    <div class="row s_col_no_resize s_col_no_bgcolor mt-2">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Clubs</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <select  class="multiple-selection clubs_name form-control" id="club_ids" name="club_ids" multiple="multiple">
+                                                <t t-foreach="clubs" t-as="club">
+                                                    <option t-att-value="club.id">
+                                                        <t t-esc="club.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--Image-->
+<!--                                    <div class="row s_col_no_resize s_col_no_bgcolor mt-2">-->
+<!--                                         <label class="col-form-label col-sm-auto s_website_form_label"-->
+<!--                                               style="width: 200px" for="studio1">-->
+<!--                                            <span class="s_website_form_label_content">Image</span>-->
+<!--                                        </label>-->
+<!--                                        <div class="col-sm">-->
+<!--                                            <input type="file" class="form-control s_website_form_input"-->
+<!--                                                  id="event_img" name="event_img" />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                            <center><div >
+                                <div id="submit_error" class="text-danger mt-2">
+                                </div>
+                                <input type="submit" class="btn btn-primary mt-3"/>
+                            </div></center>
+            </form>
+                    </div>
+                </div></center>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="thank_you_page" name="Thank You">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Thank You!</h1>
+                <p><t t-esc="message"/></p>
+                <a t-attf-href="{{url}}" class="btn btn-primary">Return To Registration</a>
+            </div>
+        </t>
+    </template>
+</odoo>

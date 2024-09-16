@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="class_department_wizard_form" model="ir.ui.view">
+       <field name="name">class.department.wizard.form</field>
+       <field name="model">class.department.wizard</field>
+       <field name="arch" type="xml">
+           <form string="Class Department Report Based on">
+               <group>
+                   <group>
+                       <field name="based_on"/>
+                       <field name="dept_id"  />
+                       <field name="alternate_ids"  invisible="1" />
+                       <field name="class_id" domain="[('id', 'in', alternate_ids)]"/>
+                   </group>
+               </group>
+               <footer>
+                   <button name="action_class_department_report" string="PDF Report" type="object"
+                           class="btn-primary"/>
+                   <button name="action_class_department_xlsx_report" string="Excel Report" type="object"
+                           class="btn-primary"/>
+               </footer>
+           </form>
+       </field>
+   </record>
+
+    <record id="action_class_department_wizard" model="ir.actions.act_window">
+        <field name="name">Class-Department Reporting</field>
+        <field name="res_model">class.department.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+<!--    <menuitem id="class_department_report_menu" name="Student information" parent="report_level_menu"-->
+<!--              action="action_class_department_wizard"/>-->
+
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="event_list_template" name="Event List">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Events</h1>
+                <a href="/event/register" class="btn btn-primary">Register Event</a>
+                <table class="table table-hover event_table">
+                    <thead>
+                        <tr>
+                            <th style="display:none;">Event id</th>
+                            <th>Event Name</th>
+                            <th>Clubs</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="events" t-as="event">
+                            <tr class="clickable_raw">
+                                <td style="display:none;" id="id_row">
+                                    <t t-esc="event.id"/>
+                                </td>
+                                <td>
+                                    <t t-esc="event.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="', '.join(event.club_ids.mapped('name'))"/>
+                                </td>
+                                <td>
+                                    <t t-esc="event.start_date"/>
+                                </td>
+                                <td>
+                                    <t t-esc="event.end_date"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--                            <th>Actions</th>-->
+
+<!--                                <td>-->
+<!--                                    <a t-att-href="'/event/%s' % event.id" class="btn btn-primary">Edit</a>-->
+<!--                                    <a t-att-href="'/event/delete/%s' % event.id" class="btn btn-danger">Delete</a>-->
+<!--                                </td>-->

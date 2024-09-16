@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<data noupdate="1">
+       <record id="ir_sequence_op_ticket" model="ir.sequence">
+           <field name="name">Request Numbers</field>
+           <field name="code">request.reference</field>
+           <field name="prefix">MR</field>
+           <field name="padding">4</field>
+           <field name="number_next">1</field>
+           <field name="number_increment">1</field>
+       </record>
+</data>

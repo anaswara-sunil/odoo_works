@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="academic_tree_view" model="ir.ui.view">
+        <field name="name">academic.tree.view</field>
+        <field name="model">manage.academic</field>
+        <field name="arch" type="xml">
+            <tree string="Decimal Precision" editable="bottom">
+                <field name="academic_name"/>
+                <field name="school_id" groups="base.group_multi_company" string="School"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="academic_action" model="ir.actions.act_window">
+        <field name="name">Manage Academic</field>
+        <field name="res_model">manage.academic</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+<!--    <menuitem id="academic_level_menu" name="Manage academic" parent="cong_level_menu" action="academic_action" />-->
+
+</odoo>

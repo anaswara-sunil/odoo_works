@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record model="ir.ui.view" id="real_estate_tree_view">
+            <field name="name">real.estate.tree.view</field>
+            <field name="model">real.estate</field>
+            <field name="arch" type="xml">
+                <tree string="Decimal Precision">
+                    <field name="name"/>
+                    <field name="booking_date"/>
+                    <field name="expected_price"/>
+                </tree>
+            </field>
+    </record>
+
+    <record model="ir.ui.view" id="real_estate_form_view">
+        <field name="name">real.estate.form</field>
+        <field name="model">real.estate</field>
+        <field name="arch" type="xml">
+            <form string="Form view">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+
+                        <group>
+                            <field name="phone"/>
+                        </group>
+
+                        <group>
+                            <field name="expected_price"/>
+                            <field name="selling_price"/>
+                            <field name="bedrooms"/>
+                            <field name="booking_date"/>
+                            <field name="active"/>
+                            <field name="status"/>
+                            <field name="postcode"/>
+
+                        </group>
+
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="real_estate_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">real.estate</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+     <record id="real_estate_search" model="ir.ui.view">
+            <field name="name">real.estate.search</field>
+            <field name="model">real.estate</field>
+            <field name="arch" type="xml">
+                <search string="Real Estate Search">
+                    <field name="name"/>
+                    <field name="expected_price"/>
+                    <field name="selling_price"/>
+                    <field name="bedrooms"/>
+                    <field name="postcode"/>
+
+                    <filter string="Not-Active" name="inactive" domain="[('active', '=', False)]"/>
+                    <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                    <filter string="Status" name="status" domain="[('status', 'in', ['new', 'offer received'])]"/>
+
+                    <group string="Group By">
+                        <filter string="postcode" name="postcode" context="{'group_by':'postcode', 'residual_visible':True}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+     <record id="real_estate_new_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">real.estate</field>
+        <field name="view_mode">form</field>
+    </record>
+
+
+
+    <menuitem id="real_estate_menu_root" name="Real Estate"/>
+
+    <menuitem id="real_estate_first_level_menu" name="Menu" parent="real_estate_menu_root"/>
+    <menuitem id="real_estate_menu_action" name="New" action="real_estate_action" parent="real_estate_first_level_menu"/>
+
+    <menuitem id="real_estate_second_level_menu" name="Second Menu" parent="real_estate_menu_root"
+              action="real_estate_new_action"/>
+
+
+</odoo>

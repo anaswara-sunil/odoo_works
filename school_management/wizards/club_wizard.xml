@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="club_wizard_form" model="ir.ui.view">
+       <field name="name">club.wizard.form</field>
+       <field name="model">club.wizard</field>
+       <field name="arch" type="xml">
+           <form string="Club Report Based on">
+               <group>
+                   <group>
+                       <field name="club_ids" widget="many2many_tags"/>
+                   </group>
+               </group>
+               <footer>
+                   <button name="action_club_report" string="PDF Report" type="object" class="btn-primary"/>
+                   <button name="action_club_xlsx_report" string="Excel Report" type="object" class="btn-primary"/>
+               </footer>
+           </form>
+       </field>
+   </record>
+
+    <record id="action_club_wizard" model="ir.actions.act_window">
+        <field name="name">Club Reporting</field>
+        <field name="res_model">club.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+<!--    <menuitem id="club_report_menu" name="Club data" parent="report_level_menu" action="action_club_wizard"/>-->
+
+</odoo>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--own documents only for student-->
+    <record id="school_rule_student_visibility" model="ir.rule">
+        <field name="name">User can only see his/her student details</field>
+        <field name="model_id" ref="model_student_reg"/>
+        <field name="groups" eval="[Command.link(ref('school_management_student'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[('user_id','=',user.id)]</field>
+    </record>
+    <record id="school_rule_class_visibility" model="ir.rule">
+        <field name="name">User can only see his/her student details</field>
+        <field name="model_id" ref="model_manage_class"/>
+        <field name="groups" eval="[Command.link(ref('school_management_student'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[('class_student_ids.user_id','=',user.id)]</field>
+    </record>
+    <record id="school_rule_exam_visibility" model="ir.rule">
+        <field name="name">User can only see his/her student details</field>
+        <field name="model_id" ref="model_manage_exam"/>
+        <field name="groups" eval="[Command.link(ref('school_management_student'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[('student_ids.user_id','=',user.id)]</field>
+    </record>
+    <record id="school_rule_club_visibility" model="ir.rule">
+        <field name="name">User can only see his/her student details</field>
+        <field name="model_id" ref="model_manage_club"/>
+        <field name="groups" eval="[Command.link(ref('school_management_student'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[('student_ids.user_id','=',user.id)]</field>
+    </record>
+    <record id="school_rule_event_visibility" model="ir.rule">
+        <field name="name">User can only see his/her student details</field>
+        <field name="model_id" ref="model_manage_event"/>
+        <field name="groups" eval="[Command.link(ref('school_management_student'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[('club_ids.student_ids.user_id','=',user.id)]</field>
+    </record>
+    <record id="school_rule_leave_visibility" model="ir.rule">
+        <field name="name">User can only see his/her student details</field>
+        <field name="model_id" ref="model_manage_leave"/>
+        <field name="groups" eval="[Command.link(ref('school_management_student'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[('student_id.user_id','=',user.id)]</field>
+    </record>
+
+    <!--own documents only for teacher-->
+    <record id="school_rule_teacher_student_visibility" model="ir.rule">
+        <field name="name">User can only read and write student details</field>
+        <field name="model_id" ref="model_student_reg"/>
+        <field name="groups" eval="[Command.link(ref('school_management_teacher'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[]</field>
+    </record>
+    <record id="school_rule_teacher_exam_visibility" model="ir.rule">
+        <field name="name">User can create exams</field>
+        <field name="model_id" ref="model_manage_exam"/>
+        <field name="groups" eval="[Command.link(ref('school_management_teacher'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="domain_force">[]</field>
+    </record>
+    <record id="school_rule_teacher_leave_visibility" model="ir.rule">
+        <field name="name">User can create leaves</field>
+        <field name="model_id" ref="model_manage_leave"/>
+        <field name="groups" eval="[Command.link(ref('school_management_teacher'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[]</field>
+    </record>
+    <record id="school_rule_class_visibility" model="ir.rule">
+        <field name="name">User can only class details</field>
+        <field name="model_id" ref="model_manage_class"/>
+        <field name="groups" eval="[Command.link(ref('school_management_teacher'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[]</field>
+    </record>
+    <record id="school_rule_club_visibility" model="ir.rule">
+        <field name="name">User can club details</field>
+        <field name="model_id" ref="model_manage_club"/>
+        <field name="groups" eval="[Command.link(ref('school_management_teacher'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[]</field>
+    </record>
+    <record id="school_rule_event_visibility" model="ir.rule">
+        <field name="name">User can only see his/her student details</field>
+        <field name="model_id" ref="model_manage_event"/>
+        <field name="groups" eval="[Command.link(ref('school_management_teacher'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[]</field>
+    </record>
+
+    <!--Multi school-->
+    <record id="ir_rule_multi_schools_student" model="ir.rule">
+        <field name="name">Multi Schools</field>
+        <field name="model_id" ref="model_student_reg"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('school_id', 'in', company_ids)]</field>
+    </record>
+    <record id="ir_rule_multi_schools_academic" model="ir.rule">
+        <field name="name">Multi Schools</field>
+        <field name="model_id" ref="model_manage_academic"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('school_id', 'in', company_ids)]</field>
+    </record>
+    <record id="ir_rule_multi_schools_class" model="ir.rule">
+        <field name="name">Multi Schools</field>
+        <field name="model_id" ref="model_manage_class"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('school_id', 'in', company_ids)]</field>
+    </record>
+    <record id="ir_rule_multi_schools_club" model="ir.rule">
+        <field name="name">Multi Schools</field>
+        <field name="model_id" ref="model_manage_club"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('school_id', 'in', company_ids)]</field>
+    </record>
+
+
+</odoo>
+
+
+
+
+

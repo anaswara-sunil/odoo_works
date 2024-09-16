@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<templates id="latest_event_template" xml:space="preserve">-->
+<!--    <t t-name="school_management.latest_event">-->
+<!--        <div id="course_carousel" class="container carousel slide" data-bs-ride="carousel" t-att-data-bs-interval="interval">-->
+<!--            <div class="carousel-inner row w-100 mx-auto" role="listbox">-->
+<!--&lt;!&ndash;                <t t-esc="events"/>&ndash;&gt;-->
+<!--                <t t-foreach="events" t-as="item" t-key="data_index">-->
+<!--&lt;!&ndash;                    <t t-esc="item"/>&ndash;&gt;-->
+<!--                        <div class="row">-->
+<!--                                <div class="block span3 col-3">-->
+<!--                                    <div class="card-group">-->
+<!--                                        <div class="card">-->
+<!--&lt;!&ndash;                                            <img class="card-img-top" t-attf-src="data:image/png;base64,{{item.image_1920}}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                 style="padding: 0px; margin: 0px; height: 160px; width:305px;"/>&ndash;&gt;-->
+<!--                                            <h5 class="mb-0"><t t-esc="item.name"/></h5>-->
+<!--&lt;!&ndash;                                            <a t-attf-href="/slides/{{item.id}}" class="btn btn-primary">Goto Courses</a>&ndash;&gt;-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                        </div>-->
+<!--                </t>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </t>-->
+<!--</templates>-->
+
+
+<template id="latest_event_template" name="Latest Events">
+    <t t-name="school_management.latest_event">
+        <div id="latest_events_carousel" class="container">
+            <center>
+                <h2>Latest Events</h2>
+            </center>
+            <div class="row">
+                <t t-foreach="events" t-as="item" t-key="data_index">
+                    <div class="col-md-3">
+                        <div class="card mb-4">
+                            <center>
+                                <div class="card-body">
+                                    <t t-if="item.event_poster">
+                                        <img class="card-img-top" t-attf-src="data:image/jpg;base64,{{item.event_poster}}"/>
+                                    </t>
+                                    <t t-else="">
+                                        <img class="card-img-top"
+                                             t-attf-src="https://www.adobe.com/content/dam/www/us/en/events/overview-page/eventshub_evergreen_opengraph_1200x630_2x.jpg"/>
+                                    </t>
+                                    <h5 class="card-title">
+                                        <a t-attf-href="/event/{{item.id}}">
+                                            <t t-esc="item.name"/>
+                                        </a>
+                                    </h5>
+                                    <p class="card-text">
+                                        <b>Start Date:</b>
+                                        <t t-esc="item.start_date"/>
+                                    </p>
+                                    <p class="card-text">
+                                        <b>End Date:</b>
+                                        <t t-esc="item.end_date"/>
+                                    </p>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+</template>

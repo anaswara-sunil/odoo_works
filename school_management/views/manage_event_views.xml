@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+     <record id="event_tree_view" model="ir.ui.view" >
+            <field name="name">event.tree.view</field>
+            <field name="model">manage.event</field>
+            <field name="arch" type="xml">
+                <tree string="Manage Event">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="club_ids" widget="many2many_tags"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+    </record>
+
+    <record  id="event_form_form_view" model="ir.ui.view">
+        <field name="name">event.form.view</field>
+        <field name="model">manage.event</field>
+        <field name="arch" type="xml">
+            <form string="Form view">
+                <header>
+                    <button name="action_button_confirm" type="object" string="Confirm" class="btn btn-primary"
+                            help="Move Registration to Registered state" invisible="state in ('announced','cancelled','done')"/>
+
+                    <button name="action_button_cancel" type="object" string="Cancel" class="btn btn-primary"
+                        help="Move Registration to cancel state" invisible="state in ('draft','done','cancelled')"/>
+
+                    <button name="action_button_done" type="object" string="Done" class="btn btn-primary"
+                            help="Move Registration to Done state" invisible="state in ('done')"/>
+
+<!--                    <button name="action_send_email" type="object" string="Send Email" class="oe_highlight"/>-->
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,announced,done"/>
+                </header>
+                <sheet>
+                     <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="active" invisible="1"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="club_ids" widget="many2many_tags" readonly="state in 'done','cancelled' " options="{'color_field': 'color', 'no_create': True} "/>
+                            <field name="event_poster"/>
+                            <field name="website_created" invisible="1"/>
+                        </group>
+                     </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="event_description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                   <field name="message_follower_ids" groups="base.group_user"/>
+                   <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="event_action" model="ir.actions.act_window">
+            <field name="name">Manage Events</field>
+            <field name="res_model">manage.event</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="website_event_menu" model="website.menu">
+        <field name="name">Event</field>
+        <field name="url">/event</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">92</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="latest_event_template" name="Latest Events">
+        <!--        Template Latest Event dynamic snippet-->
+        <section class="latest_events_snippet">
+           <div class="ref-arrival-content">
+                <p class="ref-section_head ref-centerhead__underline ref-head--primary"
+                   style="color: #0d5272;"/>
+            </div>
+            <div id="latest_events_carousel"/>
+        </section>
+    </template>
+</odoo>

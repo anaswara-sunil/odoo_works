@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_report_manage_leave" model="ir.actions.report">
+           <field name="name">Leave Report</field>
+           <field name="model">manage.leave</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="report_name">school_management.report_leave</field>
+           <field name="report_file">school_management.report_leave</field>
+<!--           <field name="binding_model_id" ref="model_manage_leave"/>-->
+<!--           <field name="binding_type">report</field>-->
+    </record>
+    <record id="action_report_manage_event" model="ir.actions.report">
+           <field name="name">Event Report</field>
+           <field name="model">manage.event</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="report_name">school_management.report_event</field>
+           <field name="report_file">school_management.report_event</field>
+    </record>
+    <record id="action_report_manage_club" model="ir.actions.report">
+           <field name="name">Club Report</field>
+           <field name="model">manage.club</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="report_name">school_management.report_club</field>
+           <field name="report_file">school_management.report_club</field>
+    </record>
+    <record id="action_report_manage_class_department" model="ir.actions.report">
+           <field name="name">Class-Department Report</field>
+           <field name="model">manage.class</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="report_name">school_management.report_class_department</field>
+           <field name="report_file">school_management.report_class_department</field>
+    </record>
+    <record id="action_report_manage_exam" model="ir.actions.report">
+           <field name="name">Exam Report</field>
+           <field name="model">manage.exam</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="report_name">school_management.report_exam</field>
+           <field name="report_file">school_management.report_exam</field>
+    </record>
+
+</odoo>
