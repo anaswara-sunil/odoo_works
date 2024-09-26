@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="point_of_sale.ProductVideoPopup">
+        <div class="popup product-video-popup">
+            <div class="modal-header">
+                <h4 class="modal-title" style="margin-left:160px">
+                    <t t-esc="props.title"/>
+                </h4>
+                <div class="btn" t-on-click="cancel">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h2><t t-esc="props.product.display_name"/></h2>
+                <t t-if="props.product.url">
+                     <iframe width="460" height="315"
+                        t-att-src="props.product.url">
+                     </iframe>
+                </t>
+            </div>
+<!--            <div class="footer footer-flex modal-footer justify-content-end">-->
+<!--                <div class="button cancel btn btn-lg btn-primary" t-on-click="cancel">-->
+<!--                    <t t-esc="props.closePopup"/>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </t>
+</templates>

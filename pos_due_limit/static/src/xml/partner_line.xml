@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates  xml:space="preserve">
+    <t t-name="PartnerLineCustom" t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension" >
+        <xpath expr="//td[hasclass('partner-line-email')]" position="before">
+<!--            <span t-log="props"/>-->
+           <td class="partner-line-total_due">
+                <div>
+                    <t t-esc="props.partner.total_due" />
+                </div>
+           </td>
+           <td class="partner-line-due_limit">
+                <div>
+                    <t t-esc="props.partner.customer_due_limit" />
+                </div>
+            </td>
+       </xpath>
+    </t>
+</templates>

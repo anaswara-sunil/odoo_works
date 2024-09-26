@@ -59,7 +59,7 @@ class EventWizard(models.TransientModel):
          'report_name': report_name,
          'company_details' : html2text.html2text(self.env.company.company_details)
       }
-      print(data,'data')
+      # print(data,'data')
       return {
          'type': 'ir.actions.report',
          'data': {'model': 'event.wizard',
@@ -110,7 +110,7 @@ class EventWizard(models.TransientModel):
       self.env.cr.execute(query)
       report = self.env.cr.dictfetchall()
 #User error
-      print(report, 'report')
+      # print(report, 'report')
       if not report:
          raise UserError(_('No Data Found'))
 

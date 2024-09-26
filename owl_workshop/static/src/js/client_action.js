@@ -4,9 +4,11 @@ import { InputBox} from "./input_box";
 import {
     Component,
  } from "@odoo/owl";
+import { useService } from "@web/core/utils/hooks";
+
+
 
 class AdvancedDashboard extends Component {
-
 
 }
 AdvancedDashboard.template = "owl_workshop.advanced_dashboard"

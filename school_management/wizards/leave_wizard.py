@@ -80,7 +80,7 @@ class LeaveWizard(models.TransientModel):
          'company_details' : html2text.html2text(self.env.company.company_details),
          'report_heading': report_name
       }
-      print(data,'data')
+      # print(data,'data')
       return {
          'type': 'ir.actions.report',
          'data': {'model': 'leave.wizard',
@@ -132,7 +132,7 @@ class LeaveWizard(models.TransientModel):
 
       self.env.cr.execute(query)
       report = self.env.cr.dictfetchall()
-      print(report, 'report')
+      # print(report, 'report')
 
 # User error
       if not report:
@@ -142,7 +142,7 @@ class LeaveWizard(models.TransientModel):
       for rec in report:
          if rec['class'] not in class_list:
             class_list.append(rec['class'])
-      print(class_list,'cls lst')
+      # print(class_list,'cls lst')
 
       stud_list = []
       for rec in report:
@@ -186,7 +186,7 @@ class LeaveWizard(models.TransientModel):
          sheet.write('B7', data['class_student'], sub_head)
          i = 7
          for stud in stud_list:
-            print(stud, 'stud')
+            # print(stud, 'stud')
             i += 1
             sheet.write(f'A{i}', 'Student :', sub_head)
             sheet.write(f'B{i}', f'- {stud}', sub_head)

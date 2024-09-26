@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates  xml:space="preserve">
+    <t t-name="ProductCardCustom" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-information-tag')]" position="replace">
+            <t t-if="props.Disc !== false">
+                <div t-if="props.Disc" class="product-discount-tag"  t-on-click.stop="props.onProductInfoClick">
+    <!-- 'em' tag to show text in italic           -->
+                    <em class="product-discount-tag-logo text-light"><t t-esc="props.Disc" />% </em>
+                </div>
+            </t>
+            <t t-else="">
+                <div t-if="props.productInfo" class="product-information-tag" t-on-click.stop="props.onProductInfoClick">
+                    <i class="product-information-tag-logo fa fa-info" role="img" aria-label="Product Information" title="Product Information" />
+                </div>
+            </t>
+
+        </xpath>
+    </t>
+</templates>
+

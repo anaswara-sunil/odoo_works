@@ -68,7 +68,10 @@
                 'school_management/static/src/js/event_check.js',
                 'school_management/static/src/js/latest_event.js',
                 'school_management/static/src/xml/latest_events_snippet_templates.xml',
+                'school_management/static/src/css/snippet_css.css',
+                'school_management/static/src/img/thumbnail.svg',
             ],
     }
 }
+
 

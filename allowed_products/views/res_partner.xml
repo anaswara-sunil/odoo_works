@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="res_partner_action" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="contact_form_inherit"  model="ir.ui.view" >
+        <field name="name">contact.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="based_on" />
+                <field name="allowed_product_ids" widget="many2many_tags" invisible="based_on in ('allowed_categories')"/>
+                <field name="allowed_category_ids" widget="many2many_tags" invisible="based_on in ('allowed_products')"/>
+            </field>
+        </field>
+
+
+
+    </record>
+
+    <menuitem id="res_partner_menu" name="Allowed Products"/>
+    <menuitem id="customer_menu" name="Customers " action="res_partner_action" parent="res_partner_menu" sequence="1"/>
+
+</odoo>

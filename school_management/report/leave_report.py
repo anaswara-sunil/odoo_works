@@ -41,7 +41,7 @@ class LeaveReport(models.AbstractModel):
 
         self.env.cr.execute(query)
         report = self.env.cr.dictfetchall()
-        print(report, 'report pdf')
+        # print(report, 'report pdf')
 
 # validation error
         if not report:
@@ -57,7 +57,7 @@ class LeaveReport(models.AbstractModel):
         for rec in report:
             if rec['student'] not in stud_list:
                 stud_list.append(rec['student'])
-        print(stud_list)
+        # print(stud_list)
 
         return {
             'doc_ids': docids,

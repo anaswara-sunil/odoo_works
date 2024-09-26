@@ -13,14 +13,14 @@ class XLSXReportController(http.Controller):
         Generate an XLSX report based on the provided data and return it as a
         response.
         """
-        print('main 1')
+        # print('main 1')
         uid = request.session.uid
         report_obj = request.env[model].with_user(uid)
-        print(report_obj,'report obj')
+        # print(report_obj,'report obj')
         options = json.loads(options)
         token = 'dummy-because-api-expects-one'
         try:
-            print('try')
+            # print('try')
             if output_format == 'xlsx':
                 response = request.make_response(
                     None,

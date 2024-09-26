@@ -62,7 +62,7 @@ class ClassDepartmentWizard(models.TransientModel):
          'dept_id': self.dept_id.id,
          'company_details': html2text.html2text(self.env.company.company_details),
       }
-      print(data, 'data')
+      # print(data, 'data')
       return {
          'type': 'ir.actions.report',
          'data': {'model': 'class.department.wizard',
@@ -111,13 +111,13 @@ class ClassDepartmentWizard(models.TransientModel):
       for rec in report:
          if rec['class'] not in class_dict:
             class_dict[rec['class']] = rec['department']
-      print(class_dict,'cls dict')
+      # print(class_dict,'cls dict')
 
       dept_dict = {}
       for rec in report:
          if rec['department'] not in dept_dict:
             dept_dict[rec['department']] = rec['hod']
-      print(report, 'report')
+      # print(report, 'report')
 # User Error
       if not report:
          raise UserError(_('No Data Found'))

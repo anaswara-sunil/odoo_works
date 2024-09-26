@@ -80,7 +80,7 @@ class ExamWizard(models.TransientModel):
          'report_name': report_name,
          'company_details': html2text.html2text(self.env.company.company_details),
       }
-      print(data, 'data')
+      # print(data, 'data')
       return {
          'type': 'ir.actions.report',
          'data': {'model': 'exam.wizard',
@@ -138,7 +138,7 @@ class ExamWizard(models.TransientModel):
 # User Error
       if not report:
          raise UserError(_('No Data Found'))
-      print(report, 'report')
+      # print(report, 'report')
 
 # Excel table
       sheet.merge_range('A1:A3', 'Company :', details)

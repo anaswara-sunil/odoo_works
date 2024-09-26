@@ -159,7 +159,7 @@ class StudentRegistration(models.Model):
 
     def create_user(self):
         """Creates a user upon Student registration"""
-        print(self)
+        # print(self)
         if self.state == 'registered':
             partner_vals = {
                 'name': self.full_name,

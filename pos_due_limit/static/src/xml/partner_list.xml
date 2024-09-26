@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates  xml:space="preserve">
+    <t t-name="PartnerListCustom" t-inherit="point_of_sale.PartnerListScreen" t-inherit-mode="extension">
+        <xpath expr="//th[hasclass('partner-line-email')]" position="before">
+<!--            <span t-log="props"/>-->
+           <th class="partner-line-total_due">Current Due</th>
+           <th class="partner-line-due_limit">Due Limit</th>
+       </xpath>
+    </t>
+</templates>

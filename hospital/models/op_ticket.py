@@ -15,7 +15,7 @@ class OpTicket(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        print(vals_list)
+        # print(vals_list)
         for vals in vals_list:
             if vals.get('name', _('New')) == _('New'):
                 vals['name'] = self.env['ir.sequence'].next_by_code(
@@ -53,6 +53,6 @@ class OpTicket(models.Model):
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    def action_confirm(self):
-        self.partner_id.country_id.currency_id.symbol = '$'
-        print(self.partner_id.country_id.currency_id.symbol)
+    # def action_confirm(self):
+    #     self.partner_id.country_id.currency_id.symbol = '$'
+    #     # print(self.partner_id.country_id.currency_id.symbol)

@@ -2,7 +2,7 @@
 <odoo>
     <template id="basic_snippet" inherit_id="website.snippets" name="Latest events Snippet">
         <xpath expr="//div[@id='snippet_effect']//t[@t-snippet][last()]" position="after">
-            <t t-snippet="school_management.latest_event_template"/>
+            <t t-snippet="school_management.latest_event_template" t-thumbnail="/school_management/static/src/img/thumbnail.svg"/>
         </xpath>
     </template>
 </odoo>

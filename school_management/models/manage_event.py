@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from reportlab.lib.validators import inherit
-
 from odoo import models, fields, api
 from datetime import date
 from datetime import timedelta
@@ -58,16 +56,16 @@ class ManageEvent(models.Model):
 
     def archive_event(self):
         """Scheduled Archiving Action"""
-        print(self)
-        print(self.name)
+        # print(self)
+        # print(self.name)
         today = date.today()
         events = self.search(
             ['|',('state', '=', 'done'),('end_date', '<', today)])
         # events = self.env['manage.event'].search(
         #     ['|', ('state', '=', 'done'), ('end_date', '<', today)])
-        print(events)
+        # print(events)
         if  events:
-            print('done state')
+            # print('done state')
             events.write({
                 'active': False,
             })
@@ -76,7 +74,7 @@ class ManageEvent(models.Model):
         """Automated Email """
         today = date.today()
         reminder_date = today + timedelta(days=2)
-        print(reminder_date)
+        # print(reminder_date)
         events = self.search([('start_date', '=', reminder_date)])
         employees = self.env['res.partner'].search(
             [('contact_type', 'in' , ['office_staff','teacher'])])
@@ -88,7 +86,7 @@ class ManageEvent(models.Model):
                 'email_cc': False,
                 'email_to': [employee.email for employee in employees],
             }
-            print(email_values)
+            # print(email_values)
 
             mail_template = self.env.ref('school_management.email_template_name')
 

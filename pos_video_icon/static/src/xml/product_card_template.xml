@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates  xml:space="preserve">
+    <t t-name="ProductCardCustom" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-img')]" position="before">
+            <t t-if="props.prodURL !== false">
+                <div  class="product-video-tag" t-on-click.stop="props.onProductVideoClick">
+                    <i class="product-video-tag-logo fa fa-play" role="img" aria-label="Product video" title="Product video"/>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates  xml:space="preserve">
+    <t t-name="ProductWidgetCustom" t-inherit="point_of_sale.ProductsWidget" t-inherit-mode="extension">
+        <xpath expr="//ProductCard" position="attributes">
+            <attribute name="onProductVideoClick" add="() => this.onProductVideoClick(product)"/>
+            <attribute name="prodURL" add="product.url"/>
+        </xpath>
+    </t>
+</templates>

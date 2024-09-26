@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="contact_form_view_inherit"  model="ir.ui.view" >
+        <field name="name">contact.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="l10n_in_pan" position="after">
+                <field name="set_due_limit"/>
+                <field name="customer_due_limit" invisible="not set_due_limit" widget="monetary"/>
+                <field name="total_due"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
+
+

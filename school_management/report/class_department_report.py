@@ -9,7 +9,7 @@ class ClassDepartmentReport(models.AbstractModel):
     @api.model
     def _get_report_values(self,docids,data=None):
         """Setting datas to the template"""
-        print(data,'data')
+        # print(data,'data')
         # docs = self.env['manage.class'].browse(docids)
         query = """select mc.name as class,md.name as department,res.name as hod,mc.student_count as student_count,
                             mc.department_id from  manage_class as mc
@@ -41,7 +41,7 @@ class ClassDepartmentReport(models.AbstractModel):
         for rec in report:
             if rec['department'] not in dept_dict:
                 dept_dict[rec['department']] = rec['hod']
-        print(report,'report')
+        # print(report,'report')
         if not report:
             raise UserError(_('No Data Found'))
 

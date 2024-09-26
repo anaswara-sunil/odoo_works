@@ -10,7 +10,7 @@ class EventReport(models.AbstractModel):
     @api.model
     def _get_report_values(self,docids,data=None):
         """Setting datas to the template"""
-        print(data,'data')
+        # print(data,'data')
         # docs = self.env['manage.event'].browse(docids)
         query = """select mc.name as club,
                             me.start_date,me.end_date,me.name,me.state from manage_event as me
@@ -39,7 +39,7 @@ class EventReport(models.AbstractModel):
 
         self.env.cr.execute(query)
         report = self.env.cr.dictfetchall()
-        print(report,'report')
+        # print(report,'report')
         if not report:
             raise UserError(_('No Data Found'))
 

@@ -30,5 +30,5 @@ class ManageExam(models.Model):
         """Total Mark of the Exam"""
         for rec in self:
             rec.total_mark = sum(rec.subject_ids.mapped('max_mark'))
-            print(rec.subject_ids.mapped('max_mark'))
+            # print(rec.subject_ids.mapped('max_mark'))
 

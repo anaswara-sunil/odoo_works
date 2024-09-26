@@ -23,7 +23,7 @@ class ImportFileWizard(models.TransientModel):
            for row in ws.iter_rows(min_row=3):
                name = row[0].value
                prod = row[2].value
-               print(f"Name: {name}, product: {prod} , internal ref: {row[1].value}")
+               # print(f"Name: {name}, product: {prod} , internal ref: {row[1].value}")
                if not name and not prod and not row[1].value:
                    continue
                if (not name or not prod) and row[1].value :

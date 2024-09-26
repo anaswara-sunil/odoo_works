@@ -116,19 +116,18 @@ publicWidget.registry.studentCheck = publicWidget.Widget.extend({
      },
 
      async _confirm_btn_Click(ev) {
-//        console.log(ev.currentTarget.id,'ev');
         var buttonId = (ev.currentTarget.id);
         const token = await jsonrpc('/registration/button_id', {
             buttonId
         })
         .then(function(student){
-//            console.log(student)
             $('#student_id').val(student['student']);
             $('#confirm_student').val(student['student']);
             $('#student_name').val(student['student_name']);
             $('#student_email').val(student['student_email']);
             $('#student_phone').val(student['student_phone']);
-            $('#student_class').val(student['student_class']); // Show the modal
+            $('#student_class').val(student['student_class']);
+        // Show the modal
             $('#confirmModal').modal('show');
          })
 

@@ -70,11 +70,11 @@ class ClubWizard(models.TransientModel):
 
       club_list = []
       for rep in report:
-          print(rep, 'rep')
+          # print(rep, 'rep')
           if rep['club'] not in club_list:
               club_list.append(rep['club'])
 
-      print(report, 'report')
+      # print(report, 'report')
 # User Error
       if not report:
           raise UserError(_('No Data Found'))

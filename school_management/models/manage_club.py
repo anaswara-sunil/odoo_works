@@ -22,7 +22,7 @@ class ManageClub(models.Model):
         """Computing the event count"""
         for record in self:
             record.event_count = self.env['manage.event'].search_count([('club_ids', '=', self.ids)])
-            print(record.event_count)
+            # print(record.event_count)
 
     def action_get_events_record(self):
         """Event records """
@@ -50,21 +50,6 @@ class ManageClub(models.Model):
 
 
 
-    # @api.model
-    # def create(self, vals):
-    #     if 'student_ids' in vals:
-    #         student_ids = vals['student_ids'][0][2]
-    #         for student_id in student_ids:
-    #             if not self.env['school.student'].browse(student_id).exists():
-    #                 raise ValidationError("Cannot create a new student from the class model.")
-    #     return super(ManageClub, self).create(vals)
-    #
-    # def write(self, vals):
-    #     if 'student_ids' in vals:
-    #         student_ids = vals['student_ids'][0][2]
-    #         for student_id in student_ids:
-    #             if not self.env['school.student'].browse(student_id).exists():
-    #                 raise ValidationError("Cannot create a new student from the class model.")
-    #     return super(ManageClub, self).write(vals)
+
 
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="product_template_form_inherit"  model="ir.ui.view" >
+        <field name="name">product.product.form.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="detailed_type" position="before">
+                <field name="discount_price_tag" />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -3,10 +3,13 @@
 
 <templates id="template" xml:space="preserve">
 <t t-name="owl_workshop.input_box">
-    <div>
-        <input type="text" name="db" value="" id="db" class="form-control"/>
-        <button class="oe_stat_button">Click here</button>
+    <div class="InputDiv">
+        <input type="text" name="db" value="" id="db" class="form-control" t-ref="InputFieldInInputBox"/>
+        <button class="oe_stat_button" t-on-click="click_btn">Click here</button>
     </div>
+    state value :<t t-esc="state.value"/> <br/>
+    state next value :<t t-esc="state.next_val"/>
+
 </t>
 
 </templates>

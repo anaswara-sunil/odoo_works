@@ -33,7 +33,7 @@ class EventController(Controller):
 
         request.env['manage.event'].sudo().create({
             'name': post.get('event_name'),
-            'image':post.get('event_img'),
+            # 'image':post.get('event_img'),
             'start_date': parse(post.get('start_date'), parserinfo=None),
             'end_date': parse(post.get('end_date'), parserinfo=None),
             'club_ids':  [(6, 0, [int(c) for c in club_ids])],

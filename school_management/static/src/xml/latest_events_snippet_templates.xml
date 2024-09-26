@@ -1,68 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--<templates id="latest_event_template" xml:space="preserve">-->
-<!--    <t t-name="school_management.latest_event">-->
-<!--        <div id="course_carousel" class="container carousel slide" data-bs-ride="carousel" t-att-data-bs-interval="interval">-->
-<!--            <div class="carousel-inner row w-100 mx-auto" role="listbox">-->
-<!--&lt;!&ndash;                <t t-esc="events"/>&ndash;&gt;-->
-<!--                <t t-foreach="events" t-as="item" t-key="data_index">-->
-<!--&lt;!&ndash;                    <t t-esc="item"/>&ndash;&gt;-->
-<!--                        <div class="row">-->
-<!--                                <div class="block span3 col-3">-->
-<!--                                    <div class="card-group">-->
-<!--                                        <div class="card">-->
-<!--&lt;!&ndash;                                            <img class="card-img-top" t-attf-src="data:image/png;base64,{{item.image_1920}}"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                 style="padding: 0px; margin: 0px; height: 160px; width:305px;"/>&ndash;&gt;-->
-<!--                                            <h5 class="mb-0"><t t-esc="item.name"/></h5>-->
-<!--&lt;!&ndash;                                            <a t-attf-href="/slides/{{item.id}}" class="btn btn-primary">Goto Courses</a>&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                        </div>-->
-<!--                </t>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </t>-->
-<!--</templates>-->
 
-
-<template id="latest_event_template" name="Latest Events">
+<templates id="template" xml:space="preserve">
     <t t-name="school_management.latest_event">
-        <div id="latest_events_carousel" class="container">
-            <center>
-                <h2>Latest Events</h2>
-            </center>
-            <div class="row">
-                <t t-foreach="events" t-as="item" t-key="data_index">
-                    <div class="col-md-3">
-                        <div class="card mb-4">
-                            <center>
-                                <div class="card-body">
-                                    <t t-if="item.event_poster">
-                                        <img class="card-img-top" t-attf-src="data:image/jpg;base64,{{item.event_poster}}"/>
-                                    </t>
-                                    <t t-else="">
-                                        <img class="card-img-top"
-                                             t-attf-src="https://www.adobe.com/content/dam/www/us/en/events/overview-page/eventshub_evergreen_opengraph_1200x630_2x.jpg"/>
-                                    </t>
-                                    <h5 class="card-title">
-                                        <a t-attf-href="/event/{{item.id}}">
-                                            <t t-esc="item.name"/>
-                                        </a>
-                                    </h5>
-                                    <p class="card-text">
-                                        <b>Start Date:</b>
-                                        <t t-esc="item.start_date"/>
-                                    </p>
-                                    <p class="card-text">
-                                        <b>End Date:</b>
-                                        <t t-esc="item.end_date"/>
-                                    </p>
-                                </div>
-                            </center>
+        <div t-att-id="'event_carousel-' + unique_id" class="container carousel slide  mt-3" data-bs-ride="carousel" >
+            <center> <h2>Latest Events</h2> </center>
+            <div class="carousel-inner row w-100 mx-auto mt-4" role="listbox">
+                <t t-foreach="chunkData" t-as="chunk" t-key="chunk_index">
+                    <div t-att-class="chunk.is_active ? 'carousel-item active' : 'carousel-item'">
+                        <div class="row">
+                            <t t-foreach="chunk" t-as="item" t-key="data_index">
+                                 <div class="col-md-3">
+                                    <div class="card mb-4 ">
+                                        <center>
+                                            <div class="card-body" style="height: 300px;">
+                                                <span hidden="hidden"><t t-esc="item.id" /></span>
+                                                <t t-if="item.event_poster">
+                                                    <img class="card-img-top" style="height: 160px;" t-attf-src="data:image/jpg;base64,{{item.event_poster}}"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <img class="card-img-top" style="height: 160px;" t-attf-src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"/>
+                                                </t>
+                                                <h5 class="card-title" style="color:#47256f">
+                                                    <t t-esc="item.name"/>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <b>Start Date:</b>
+                                                    <t t-esc="item.start_date"/>
+                                                </p>
+                                                <p class="card-text">
+                                                    <b>End Date:</b>
+                                                    <t t-esc="item.end_date"/>
+                                                </p>
+                                            </div>
+                                        </center>
+                                    </div>
+                                 </div>
+                            </t>
                         </div>
                     </div>
                 </t>
             </div>
         </div>
+        <a t-attf-href="#event_carousel-#{unique_id}" class="carousel-control-prev" data-bs-slide="prev" role="button"
+            aria-label="Previous" title="Previous">
+            <span class="fa fa-chevron-left fa-2x" style="color: #0c0d0d;"/>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a t-attf-href="#event_carousel-#{unique_id}" class="carousel-control-next" data-bs-slide="next" role="button" aria-label="Next"
+            title="Next">
+            <span class="fa fa-chevron-right fa-2x" style="color: #0c0d0d;"/>
+            <span class="visually-hidden">Next</span>
+        </a>
     </t>
-</template>
+</templates>
+

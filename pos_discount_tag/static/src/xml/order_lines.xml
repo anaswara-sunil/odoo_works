@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="OrderLinesCustom" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
+        <xpath expr="//ul[hasclass('info-list')]/li[2]" position="after">
+            <t>
+                <div t-if="line.discount_price_tag">
+                    <em><b><t t-esc="line.discount_price_tag" />%</b></em> Offer
+                </div>
+            </t>
+
+       </xpath>
+    </t>
+</templates>

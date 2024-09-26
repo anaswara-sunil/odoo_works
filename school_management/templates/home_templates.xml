@@ -4,8 +4,7 @@
         <!--        Template Latest Event dynamic snippet-->
         <section class="latest_events_snippet">
            <div class="ref-arrival-content">
-                <p class="ref-section_head ref-centerhead__underline ref-head--primary"
-                   style="color: #0d5272;"/>
+                <p class="ref-section_head ref-centerhead__underline ref-head--primary"/>
             </div>
             <div id="latest_events_carousel"/>
         </section>

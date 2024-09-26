@@ -12,8 +12,8 @@ publicWidget.registry.eventCheck = publicWidget.Widget.extend({
      async _onEventClick(ev) {
         console.log($(ev.currentTarget).children().html(),'ev')
         var eventId = $(ev.currentTarget).children().html();
-        console.log(eventId,'eventId')
-        console.log(eventId,'id')
+//        console.log(eventId,'eventId')
+//        console.log(eventId,'id')
         const token = await jsonrpc('/event/event_id', {
             eventId
         })

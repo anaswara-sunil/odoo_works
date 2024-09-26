@@ -9,7 +9,7 @@ class ClubReport(models.AbstractModel):
     @api.model
     def _get_report_values(self,docids,data=None):
         """Setting datas to the template"""
-        print(data,'data')
+        # print(data,'data')
         # docs = self.env['manage.club'].browse(docids)
         query = """select sr.full_name as student,mcl.name as class,mc.name as club,
                             mcs.student_reg_id from  manage_club_student_reg_rel as mcs 
@@ -28,10 +28,10 @@ class ClubReport(models.AbstractModel):
 
         club_list = []
         for rep in report:
-           print(rep,'rep')
+           # print(rep,'rep')
            if rep['club'] not in club_list:
                club_list.append(rep['club'])
-        print(report,'report')
+        # print(report,'report')
         if not report:
             raise UserError(_('No Data Found'))
 

@@ -9,7 +9,7 @@ class ExamReport(models.AbstractModel):
     @api.model
     def _get_report_values(self,docids,data=None):
         """Setting datas to the template"""
-        print(data,'data')
+        # print(data,'data')
         # docs = self.env['manage.exam'].browse(docids)
         query =''
         if data.get('based_on') == 'class':
@@ -44,7 +44,7 @@ class ExamReport(models.AbstractModel):
                 exam_dict[rec['exam']] = rec['class']
         if not report:
             raise UserError(_('No Data Found'))
-        print(report,'report')
+        # print(report,'report')
         return {
             'doc_ids': docids,
             'doc_model': 'class_department_wizard',
