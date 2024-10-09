@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+   <t t-name="systray_icon" owl="1">
+      <t t-if="state.boolean">
+          <Dropdown>
+               <t t-set-slot="toggler">
+                   <div class="new_icon">
+                       <div class="icon_div">
+                           <div class="toggle-icon" role="button">
+                               <i class="fa fa-solid fa-cloud fa-1.7x"
+                                  style="color: #fcfcfd; margin-bottom:10px; padding:10px;"
+                                  role="img" aria-label="Weather Notification"
+                                  t-on-click="_openWeather"/>
+                           </div>
+                       </div>
+                    </div>
+               </t>
+               <t t-set-slot="default">
+                   <DropdownItem>
+                        <div>
+                            <t t-if="state.weatherData">
+                                <img t-attf-src="{{ this.state.icon_url}}"/>
+                                <br/>
+                                <h1><t t-esc="state.temp"/> &#176;
+                                <t t-esc="state.weatherData.weather[0].main"/></h1>
+                                <b><t t-esc="state.weatherData.weather[0].description"/><span style="padding:5px">in</span>
+                                    <t t-esc="state.weatherData.name"/></b> <br/>
+                                <t t-esc="state.date"/>
+                            </t>
+                            <t t-elif="state.api_loc">
+                                <center><img t-attf-src="https://cdn.icon-icons.com/icons2/2772/PNG/512/weather_warning_icon_176810.png" style="width:100px"/></center>
+                                <h3>No Details Found</h3>
+                            </t>
+                            <t t-else="">
+                                <center><img t-attf-src="https://cdn.icon-icons.com/icons2/2772/PNG/512/weather_warning_icon_176810.png" style="width:100px"/></center>
+                                <t t-if="state.stage">
+                                    <h3>Location Details Not Found</h3>
+                                </t>
+                                <t t-else="">
+                                    <h3>API Details Not Found</h3>
+                                </t>
+                            </t>
+                       </div>
+                   </DropdownItem>
+               </t>
+           </Dropdown>
+      </t>
+   </t>
+</templates>

@@ -5,7 +5,7 @@
                Customer Due Limit and Payment validation 
                     """,
     'installable': True,
-    'depends': ['base','point_of_sale'],
+    'depends': ['base','point_of_sale',''],
     'data': [
         'views/res_partner.xml',
         # 'views/res_config_settings.xml',

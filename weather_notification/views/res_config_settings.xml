@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.weather.fields</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='integration']" position="inside">
+                <setting string="Weather Settings"  id="weather_settings">
+                    <field name="weather_sync"/>
+                    <div invisible="weather_sync == False">
+                        <span>API Key</span>
+                        <field name="api_key" class="ms-5" password="True"/><br/>
+                        <span >Location</span>
+                        <field name="location" class="ms-5"/><br/>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

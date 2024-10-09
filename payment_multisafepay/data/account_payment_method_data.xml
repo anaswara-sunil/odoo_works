@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="account_payment_method_multisafepay" model="account.payment.method">
+            <field name="name">Multisafepay</field>
+            <field name="code">multisafepay</field>
+            <field name="payment_type">inbound</field>
+        </record>
+</odoo>

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, _,api,Command
-from datetime import timedelta
+from odoo import models, fields, _,api
 from odoo.exceptions import UserError
 import html2text
 import io

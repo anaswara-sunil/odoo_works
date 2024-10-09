@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<odoo noupdate="1">-->
+<odoo >
+       <record id="res_config_settings_id" model="ir.config_parameter">
+            <field name="key">sale.automatic_invoice</field>
+            <field name="value">True</field>
+       </record>
+</odoo>
