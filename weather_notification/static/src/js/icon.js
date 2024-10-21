@@ -8,7 +8,6 @@ import { useState } from "@odoo/owl";
 import { session } from '@web/session';
 
 
-
 class SystrayIcon extends Component {
     async setup() {
        super.setup(...arguments);

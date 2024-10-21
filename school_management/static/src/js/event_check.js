@@ -9,19 +9,17 @@ publicWidget.registry.eventCheck = publicWidget.Widget.extend({
         'click .clickable_raw': '_onEventClick',
     },
 
-     async _onEventClick(ev) {
+      _onEventClick(ev) {
         console.log($(ev.currentTarget).children().html(),'ev')
         var eventId = $(ev.currentTarget).children().html();
 //        console.log(eventId,'eventId')
 //        console.log(eventId,'id')
-        const token = await jsonrpc('/event/event_id', {
+        const token =  jsonrpc('/event/event_id', {
             eventId
-        })
-        .then(function(event){
+        }).then(function(event){
             console.log(event,'event')
             var id = event['event']
             console.log(id,'id')
-
             window.location = `/event/detail/${id}`;
         })
 },

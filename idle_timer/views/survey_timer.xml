@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="survey_fill_header_timer" inherit_id="survey.survey_fill_header">
+        <xpath expr="//div[hasclass('o_survey_timer')]" position="after">
+            <h4 class="o_survey_idle_timer" style="margin-left:500px"/>
+        </xpath>
+    </template>
+</odoo>
+

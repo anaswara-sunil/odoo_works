@@ -92,6 +92,9 @@ class ManageEvent(models.Model):
 
             mail_template.send_mail(rec.id,email_values = email_values, force_send=True)
 
+
+
+
     # @api.constrains('state')
     # def _check_state(self):
     #     print(self.state)
@@ -105,8 +108,3 @@ class ManageEvent(models.Model):
     #         'res_model':'report.school_management.report_event',
     #             }
     #
-
-
-
-
-

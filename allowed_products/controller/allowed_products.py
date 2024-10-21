@@ -16,6 +16,7 @@ class AllowedProducts(WebsiteSale):
        """Show only the allowed products/categories in shop when the related user is logged in"""
 
        res = super().shop(self,category=None, search=search, min_price=min_price, max_price=max_price, ppg=ppg,**post)
+       print('jhvhv')
        ppg = res.qcontext.get('ppg')
        ppr = res.qcontext.get('ppr')
 

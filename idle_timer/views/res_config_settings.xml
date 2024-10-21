@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.timer.fields</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='performance']" position="after">
+                  <block title="Timer" name="timer">
+                      <setting id="idle_timer" help=" Set Idle Timer to start time-out timer for the quiz
+                                when mouse and keyboard are idle for a particular time">
+                            <field id="set_idle_time" name="set_idle_time" widget='float_time'/><span>seconds</span>
+                      </setting>
+                      <setting id="time_out_timer" help=" Set Time-Out Timer to skip the question by starting
+                                a timer on screen">
+                              <field id="set_timer_time" name="set_timer_time" widget='float_time'/><span>seconds</span>
+                      </setting>
+                  </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
