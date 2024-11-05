@@ -1,4 +1,4 @@
-/** @odoo-module */
++/** @odoo-module */
 import PublicWidget from "@web/legacy/js/public/public_widget";
 import { jsonrpc } from "@web/core/network/rpc_service";
 import { renderToFragment  } from "@web/core/utils/render";

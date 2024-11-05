@@ -7,27 +7,34 @@ const { DateTime } = luxon;
 
 export class PaymentMoneris extends PaymentInterface {
     setup() {
+//works when pos session opens(1st)
         super.setup(...arguments);
-        console.log(this,'this')
+//        console.log(this,'setup PaymentMoneris')
         this.paymentLineResolvers = {};
     }
 
     send_payment_request(cid) {
-        console.log(cid,'cid')
+//5th
+//        console.log(cid,'cid')
         super.send_payment_request(cid);
         return this._moneris_pay(cid);
     }
 
     pending_moneris_line() {
+//14th
+//        console.log('pending_moneris_line')
         return this.pos.getPendingPaymentLine("moneris");
     }
 
     set_most_recent_service_id(id) {
+//       console.log('set_most_recent_service_id')
        this.most_recent_service_id = id;
     }
 
     _handle_odoo_connection_failure(data = {}) {
         // handle timeout
+//13th
+//        console.log('_handle_odoo_connection_failure')
         var line = this.pending_moneris_line();
         if (line) {
             line.set_payment_status("retry");
@@ -42,7 +49,8 @@ export class PaymentMoneris extends PaymentInterface {
     }
 
     _call_moneris(data, operation = false) {
-        console.log('_call_moneris')
+//11th
+//        console.log('_call_moneris')
         return this.env.services.orm.silent
             .call("pos.payment.method", "proxy_moneris_request", [
                 [this.payment_method.id],
@@ -53,11 +61,15 @@ export class PaymentMoneris extends PaymentInterface {
     }
 
     _moneris_get_sale_id() {
-    var config = this.pos.config;
-    return sprintf("%s (ID: %s)", config.display_name, config.id);
+//9th
+//        console.log('_moneris_get_sale_id')
+        var config = this.pos.config;
+        return sprintf("%s (ID: %s)", config.display_name, config.id);
     }
 
     _moneris_common_message_header() {
+//8th
+//        console.log('_moneris_common_message_header')
         var config = this.pos.config;
         this.most_recent_service_id = Math.floor(Math.random() * Math.pow(2, 64)).toString(); // random ID to identify request/response pairs
         this.most_recent_service_id = this.most_recent_service_id.substring(0, 10); // max length is 10
@@ -68,11 +80,15 @@ export class PaymentMoneris extends PaymentInterface {
             MessageType: "Request",
             SaleID: this._moneris_get_sale_id(config),
             ServiceID: this.most_recent_service_id,
-            POIID: this.payment_method.moneris_terminal_identifier,
+// The unique ID of the terminal to send this request to.
+//            POIID: this.payment_method.moneris_terminal_identifier
+            POIID: 'moneris'
         };
     }
 
     _moneris_pay_data() {
+//7th
+//        console.log('_moneris_pay_data')
         var order = this.pos.get_order();
         var config = this.pos.config;
         var line = order.selected_paymentline;
@@ -102,13 +118,15 @@ export class PaymentMoneris extends PaymentInterface {
 //            data.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData =
 //                "tenderOption=AskGratuity";
 //        }
-        console.log(data,'_moneris_pay_data')
+//        console.log(data,'_moneris_pay_data')
         return data;
     }
 
     _moneris_pay(cid) {
+//6th
+//        console.log('_moneris_pay(cid) ')
         var order = this.pos.get_order();
-        console.log(order,'order')
+//        console.log(order,'order')
         if (order.selected_paymentline.amount < 0) {
             this._show_error(_t("Cannot process transactions with negative amount."));
             return Promise.resolve();
@@ -123,6 +141,7 @@ export class PaymentMoneris extends PaymentInterface {
     }
 
     _moneris_handle_response(response) {
+//        console.log('_moneris_handle_response(response) ')
         var line = this.pending_moneris_line();
 
         if (response.error && response.error.status_code == 401) {
@@ -133,8 +152,7 @@ export class PaymentMoneris extends PaymentInterface {
 
         response = response.SaleToPOIRequest;
         if (response?.EventNotification?.EventToNotify === "Reject") {
-            console.error("error from Moneris", response);
-
+//            console.error("error from Moneris", response);
             var msg = "";
             if (response.EventNotification) {
                 var params = new URLSearchParams(response.EventNotification.EventDetails);
@@ -152,7 +170,98 @@ export class PaymentMoneris extends PaymentInterface {
         }
     }
 
-     _show_error(msg, title) {
+    waitForPaymentConfirmation() {
+        return new Promise((resolve) => {
+            this.paymentLineResolvers[this.pending_moneris_line().cid] = resolve;
+        });
+    }
+/**
+* This method is called from pos_bus when the payment
+* confirmation from Moneris is received via the webhook.
+*/
+    async handleMonerisStatusResponse() {
+        const notification = await this.env.services.orm.silent.call(
+            "pos.payment.method",
+            "get_latest_moneris_status",
+            [[this.payment_method.id]]
+        );
+
+        if (!notification) {
+            this._handle_odoo_connection_failure();
+            return;
+        }
+        const line = this.pending_moneris_line();
+        const response = notification.SaleToPOIResponse.PaymentResponse.Response;
+        const additional_response = new URLSearchParams(response.AdditionalResponse);
+        const isPaymentSuccessful = this.isPaymentSuccessful(notification, response);
+        if (isPaymentSuccessful) {
+            this.handleSuccessResponse(line, notification, additional_response);
+        } else {
+            this._show_error(
+                sprintf(_t("Message from Moneris: %s"), additional_response.get("message"))
+            );
+        }
+        // when starting to wait for the payment response we create a promise
+        // that will be resolved when the payment response is received.
+        // In case this resolver is lost ( for example on a refresh ) we
+        // we use the handle_payment_response method on the payment line
+        const resolver = this.paymentLineResolvers?.[line.cid];
+        if (resolver) {
+            resolver(isPaymentSuccessful);
+        } else {
+            line.handle_payment_response(isPaymentSuccessful);
+        }
+    }
+
+    isPaymentSuccessful(notification, response) {
+        return (
+            notification &&
+            notification.SaleToPOIResponse.MessageHeader.ServiceID ==
+                this.pending_moneris_line().terminalServiceId &&
+            response.Result === "Success"
+        );
+    }
+
+    handleSuccessResponse(line, notification, additional_response) {
+        const config = this.pos.config;
+        const order = this.pos.get_order();
+        const payment_response = notification.SaleToPOIResponse.PaymentResponse;
+        const payment_result = payment_response.PaymentResult;
+
+        const cashier_receipt = payment_response.PaymentReceipt.find((receipt) => {
+            return receipt.DocumentQualifier == "CashierReceipt";
+        });
+
+        if (cashier_receipt) {
+            line.set_cashier_receipt(
+                this._convert_receipt_info(cashier_receipt.OutputContent.OutputText)
+            );
+        }
+
+        const customer_receipt = payment_response.PaymentReceipt.find((receipt) => {
+            return receipt.DocumentQualifier == "CustomerReceipt";
+        });
+
+        if (customer_receipt) {
+            line.set_receipt_info(
+                this._convert_receipt_info(customer_receipt.OutputContent.OutputText)
+            );
+        }
+
+//        const tip_amount = payment_result.AmountsResp.TipAmount;
+//        if (config.adyen_ask_customer_for_tip && tip_amount > 0) {
+//            order.set_tip(tip_amount);
+//            line.set_amount(payment_result.AmountsResp.AuthorizedAmount);
+//        }
+
+        line.transaction_id = additional_response.get("pspReference");
+        line.card_type = additional_response.get("cardType");
+        line.cardholder_name = additional_response.get("cardHolderName") || "";
+    }
+
+    _show_error(msg, title) {
+//15th
+//        console.log('_show_error(msg, title) ')
         if (!title) {
             title = _t("Moneris Error");
         }
@@ -161,5 +270,8 @@ export class PaymentMoneris extends PaymentInterface {
             body: msg,
         });
     }
+
+
+
 }
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_provider_form_moneris" model="ir.ui.view">
+        <field name="name">payment.provider.form.inherit.moneris</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position="inside">
+                <group invisible="code != 'moneris'">
+                    <field name="moneris_store_id"/>
+                    <field name="moneris_api_token" password="True"/>
+                    <field name="moneris_check_avs"/>
+                    <field name="moneris_check_cvv"/>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

@@ -8,24 +8,31 @@ register_payment_method("moneris", PaymentMoneris);
 
 patch(Payment.prototype, {
     setup() {
+// 2nd
         super.setup(...arguments);
+        console.log(this.terminalServiceId,'setup')
         this.terminalServiceId = this.terminalServiceId || null;
     },
-    //@override
+//3rd  -  @override
+    init_from_JSON(json) {
+        super.init_from_JSON(...arguments);
+        this.terminalServiceId = json.terminal_service_id;
+        console.log('init_from_JSON',this.terminalServiceId,json.terminal_service_id)
+    },
+//4th  12th  16th  -  @override
     export_as_JSON() {
+        console.log('export_as_JSON',this)
         const json = super.export_as_JSON(...arguments);
         if (json) {
             json.terminal_service_id = this.terminalServiceId;
         }
-        console.log(json,'json moneris')
+        console.log(json,json.terminal_service_id,'json moneris')
         return json;
     },
-    //@override
-    init_from_JSON(json) {
-        super.init_from_JSON(...arguments);
-        this.terminalServiceId = json.terminal_service_id;
-    },
+
+//10th
     setTerminalServiceId(id) {
+        console.log('setTerminalServiceId')
         this.terminalServiceId = id;
     },
 });

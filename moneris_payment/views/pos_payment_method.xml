@@ -12,6 +12,7 @@
 
                 <field name="moneris_api_key" invisible="use_payment_terminal != 'moneris'" password="True"/>
                 <field name="moneris_terminal_identifier" invisible="use_payment_terminal != 'moneris'"/>
+<!--                <field name="moneris_store_id" invisible="use_payment_terminal != 'moneris'"/>-->
                 <field name="moneris_test_mode"  invisible="use_payment_terminal != 'moneris'" required="use_payment_terminal == 'moneris'"/>
             </xpath>
         </field>
